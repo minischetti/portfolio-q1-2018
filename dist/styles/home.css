@@ -10,34 +10,17 @@
     text-align: center;
 }
 
-.heroHeader {
+.header {
     color: rgba(255,255,255,.35);
     font-weight: 300;
+    font-size: 36px;
     text-transform: uppercase;
+}
+
+.subHeader {
+    margin: 0;
 }
 
 .accentColor {
     color: #55EAFF;
-}
-
-.learnMoreContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    height: 33%;
-    bottom: 0;
-}
-
-.learnMoreButton {
-    background-color: #55EAFF;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.learnMoreText {
-    text-transform: uppercase;
-    font-size: 14px;
 }

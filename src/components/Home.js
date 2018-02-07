@@ -1,26 +1,16 @@
 import React from 'react';
 import styles from '../../dist/styles/home.css';
+import LearnMore from './LearnMore.js';
 
 export default class Home extends React.Component {
     render() {
         return (
             <div className={styles.home}>
                 <div className={styles.hero}>
-                    <h1 className={styles.heroHeader}>I'm <span className={styles.accentColor}>Dom</span>, a <span className={styles.accentColor}>Front-end Engineer</span> in <span className={styles.accentColor}>California</span></h1>
-                    <p>…and I love creating beautiful and functional interfaces, code to pixel.</p>
+                    <h1 className={styles.header}>I'm <span className={styles.accentColor}>Dom</span>, a <span className={styles.accentColor}>Front-end Engineer</span> in <span className={styles.accentColor}>California</span></h1>
+                    <p className={styles.subHeader}>…and I love creating beautiful and functional interfaces, code to pixel.</p>
                 </div>
-                <LearnMore/>
-            </div>
-        )
-    }
-}
-
-class LearnMore extends React.Component {
-    render() {
-        return (
-            <div className={styles.learnMoreContainer}>
-                <span className={styles.learnMoreButton}></span>
-                <span className={styles.learnMoreText}>Learn More About my Work</span>
+                <LearnMore updateCurrentPage={this.props.updateCurrentPage}/>
             </div>
         )
     }

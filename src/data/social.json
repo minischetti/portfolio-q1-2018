@@ -1,0 +1,22 @@
+{
+    "social": [
+        {
+            "link": "domminischetti@gmail.com",
+            "alt": "Email",
+            "icon": "./assets/email.svg",
+            "id": "0"
+        },
+        {
+            "link": "https://www.linkedin.com/in/domminischetti/",
+            "alt": "LinkedIn",
+            "icon": "./assets/linkedin.svg",
+            "id": "1"
+        },
+        {
+            "link": "https://github.com/minischetti",
+            "alt": "GitHub",
+            "icon": "./assets/github.svg",
+            "id": "2"
+        }
+    ]
+}
