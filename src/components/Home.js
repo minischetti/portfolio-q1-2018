@@ -10,7 +10,7 @@ export default class Home extends React.Component {
                     <h1 className={styles.header}>I'm <span className={styles.accentColor}>Dom</span>, a <span className={styles.accentColor}>Front-end Engineer</span> in <span className={styles.accentColor}>California</span></h1>
                     <p className={styles.subHeader}>…and I love creating beautiful and functional interfaces, code to pixel.</p>
                 </div>
-                <LearnMore updateCurrentPage={this.props.updateCurrentPage}/>
+                <LearnMore showWork={this.props.showWork}/>
             </div>
         )
     }

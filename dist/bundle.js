@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -303,9 +303,9 @@ module.exports = emptyFunction;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(16);
-} else {
   module.exports = __webpack_require__(17);
+} else {
+  module.exports = __webpack_require__(18);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -577,7 +577,7 @@ module.exports = warning;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(5);
   var warning = __webpack_require__(6);
-  var ReactPropTypesSecret = __webpack_require__(18);
+  var ReactPropTypesSecret = __webpack_require__(19);
   var loggedTypeFailures = {};
 }
 
@@ -876,7 +876,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(21);
+var isTextNode = __webpack_require__(22);
 
 /*eslint-disable no-bitwise */
 
@@ -937,11 +937,62 @@ module.exports = focusNode;
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(15);
 
+var content = __webpack_require__(30);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(32)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../node_modules/css-loader/index.js??ref--2!./general.css", function() {
+		var newContent = require("!!../../node_modules/css-loader/index.js??ref--2!./general.css");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(16);
+module.exports = __webpack_require__(14);
+
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -951,11 +1002,11 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(19);
+var _reactDom = __webpack_require__(20);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _App = __webpack_require__(28);
+var _App = __webpack_require__(29);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -964,7 +1015,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.querySelector('.app'));
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -992,7 +1043,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2357,7 +2408,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2376,7 +2427,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2414,15 +2465,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(20);
+  module.exports = __webpack_require__(21);
 } else {
-  module.exports = __webpack_require__(23);
+  module.exports = __webpack_require__(24);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2658,7 +2709,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2673,7 +2724,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(22);
+var isNode = __webpack_require__(23);
 
 /**
  * @param {*} object The object to check.
@@ -2686,7 +2737,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2714,7 +2765,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2748,8 +2799,8 @@ var containsNode = __webpack_require__(12);
 var focusNode = __webpack_require__(13);
 var emptyObject = __webpack_require__(4);
 var checkPropTypes = __webpack_require__(7);
-var hyphenateStyleName = __webpack_require__(24);
-var camelizeStyleName = __webpack_require__(26);
+var hyphenateStyleName = __webpack_require__(25);
+var camelizeStyleName = __webpack_require__(27);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -18116,7 +18167,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18131,7 +18182,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(25);
+var hyphenate = __webpack_require__(26);
 
 var msPattern = /^ms-/;
 
@@ -18158,7 +18209,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18194,7 +18245,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18209,7 +18260,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(27);
+var camelize = __webpack_require__(28);
 
 var msPattern = /^-ms-/;
 
@@ -18237,7 +18288,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18272,7 +18323,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18304,7 +18355,7 @@ var _jobs = __webpack_require__(41);
 
 var _jobs2 = _interopRequireDefault(_jobs);
 
-var _general = __webpack_require__(29);
+var _general = __webpack_require__(14);
 
 var _general2 = _interopRequireDefault(_general);
 
@@ -18324,27 +18375,39 @@ var App = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-        _this.state = { currentPage: "" };
+        _this.state = { showWork: false, job: _jobs2.default.jobs[0] };
+        _this.showWork = _this.showWork.bind(_this);
+        _this.fadeOut = _this.fadeOut.bind(_this);
         return _this;
     }
 
     _createClass(App, [{
-        key: 'updateCurrentPage',
-        value: function updateCurrentPage(page) {
-            this.setState({ currentPage: page });
+        key: 'updateCurrentJob',
+        value: function updateCurrentJob(job) {
+            this.setState({ job: job });
+        }
+    }, {
+        key: 'showWork',
+        value: function showWork() {
+            setTimeout(function () {
+                this.fadeOut(document.querySelector(".full"));
+            }, 1000);
+            this.setState({ showWork: true });
+        }
+    }, {
+        key: 'fadeOut',
+        value: function fadeOut(element) {
+            element.classList.add("fadeOut");
         }
     }, {
         key: 'render',
         value: function render() {
-            var jobList = _jobs2.default.jobs.map(function (job) {
-                return _react2.default.createElement(_Job2.default, { key: job.id, company: job.company, role: job.role, description: job.description, duration: job.duration });
-            });
             return _react2.default.createElement(
                 'div',
                 { className: _general2.default.full },
-                _react2.default.createElement(_Home2.default, { updateCurrentPage: this.updateCurrentPage }),
                 _react2.default.createElement(_Social2.default, null),
-                jobList
+                !this.state.showWork && _react2.default.createElement(_Home2.default, { showWork: this.showWork }),
+                this.state.showWork && _react2.default.createElement(_Job2.default, { key: this.state.job.id, company: this.state.job.company, role: this.state.job.role, description: this.state.job.description, duration: this.state.job.duration })
             );
         }
     }]);
@@ -18355,56 +18418,6 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(30);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(32)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {
-	module.hot.accept("!!../../node_modules/css-loader/index.js??ref--2!./general.css", function() {
-		var newContent = require("!!../../node_modules/css-loader/index.js??ref--2!./general.css");
-
-		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-
-		var locals = (function(a, b) {
-			var key, idx = 0;
-
-			for(key in a) {
-				if(!b || a[key] !== b[key]) return false;
-				idx++;
-			}
-
-			for(key in b) idx--;
-
-			return idx === 0;
-		}(content.locals, newContent.locals));
-
-		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-
-		update(newContent);
-	});
-
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18413,7 +18426,7 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, "html, body {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n}\n\nbody {\n  font-family: \"Roboto\";\n  font-size: 18px;\n  -webkit-font-smoothing: antialiased;\n  color: white;\n  background-color: #1E1E1E;\n  overflow: hidden;\n}\n\n* {\n  box-sizing: content-box;\n}\n\n.general__full___3Sxkh {\n  width: 100%;\n  height: 100%;\n}", ""]);
+exports.push([module.i, "html, body {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n}\n\nbody {\n  font-family: \"Roboto\";\n  font-size: 18px;\n  -webkit-font-smoothing: antialiased;\n  color: white;\n  background-color: #1E1E1E;\n  overflow: hidden;\n}\n\n.general__full___3Sxkh {\n  width: 100%;\n  height: 100%;\n}", ""]);
 
 // exports
 exports.locals = {
@@ -19058,7 +19071,7 @@ var Home = function (_React$Component) {
                         '\u2026and I love creating beautiful and functional interfaces, code to pixel.'
                     )
                 ),
-                _react2.default.createElement(_LearnMore2.default, { updateCurrentPage: this.props.updateCurrentPage })
+                _react2.default.createElement(_LearnMore2.default, { showWork: this.props.showWork })
             );
         }
     }]);
@@ -19479,9 +19492,13 @@ var LearnMore = function (_React$Component) {
     _createClass(LearnMore, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 'div',
-                { className: _learnMore2.default.container },
+                { className: _learnMore2.default.container, onClick: function onClick() {
+                        return _this2.props.showWork();
+                    } },
                 _react2.default.createElement('span', { className: _learnMore2.default.button }),
                 _react2.default.createElement(
                     'span',
