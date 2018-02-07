@@ -1,0 +1,34 @@
+{
+  "name": "portfolio-q1-2018",
+  "version": "1.0.0",
+  "description": "Portfolio for Q1 of 2018.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --watch & open dist/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minischetti/portfolio-q1-2018.git"
+  },
+  "author": "Dominic Minischetti III",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minischetti/portfolio-q1-2018/issues"
+  },
+  "homepage": "https://github.com/minischetti/portfolio-q1-2018#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.9",
+    "style-loader": "^0.20.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}
