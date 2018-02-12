@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.hidden {
+    display: none;
+}
+
 .hero {
     text-align: center;
 }

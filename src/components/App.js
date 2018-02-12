@@ -8,7 +8,7 @@ import styles from '../../dist/styles/general.css';
 export default class App extends React.Component {
     constructor() {
         super();
-        this.state = { showWork: false, job: jobs.jobs[0] }
+        this.state = { isWorkVisible: false, job: jobs.jobs[0] }
         this.showWork = this.showWork.bind(this);
         this.fadeOut = this.fadeOut.bind(this);
     }
@@ -16,10 +16,10 @@ export default class App extends React.Component {
         this.setState({job: job});
     }
     showWork() {
-        setTimeout(function() {
-            this.fadeOut(document.querySelector(".full"));
-        }, 1000);
-        this.setState({showWork: true});
+        // setTimeout(function() {
+        //     this.fadeOut(document.querySelector(".full"));
+        // }, 1000);
+        this.setState({isWorkVisible: true});
     }
     fadeOut(element) {
         element.classList.add("fadeOut");
@@ -28,8 +28,8 @@ export default class App extends React.Component {
         return (
             <div className={styles.full}>
                 <Social/>
-                {!this.state.showWork && <Home showWork={this.showWork}/> }
-                {this.state.showWork && <Job key={this.state.job.id} company={this.state.job.company} role={this.state.job.role} description={this.state.job.description} duration={this.state.job.duration} /> }
+                <Home showWork={this.showWork} isWorkVisible={this.state.isWorkVisible}/>
+                {this.state.isWorkVisible && <Job key={this.state.job.id} company={this.state.job.company} role={this.state.job.role} description={this.state.job.description} duration={this.state.job.duration} /> }
             </div>
         )
     }
