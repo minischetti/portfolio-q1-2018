@@ -18809,10 +18809,10 @@ var App = function (_React$Component) {
     }, {
         key: 'showWork',
         value: function showWork() {
-            console.log(_jobs2.default.jobs.indexOf(this.state.job));
-            console.log(_jobs2.default.jobs.length - 1);
-            var indexOfJob = _jobs2.default.jobs.indexOf(this.state.job);
-            console.log(_jobs2.default.jobs[indexOfJob + 1]);
+            // console.log(jobs.jobs.indexOf(this.state.job));
+            // console.log(jobs.jobs.length - 1);
+            // const indexOfJob = jobs.jobs.indexOf(this.state.job);
+            // console.log(jobs.jobs[indexOfJob + 1]);
             this.setState({ isWorkVisible: true });
         }
         // transitionPages(pageOut, pageIn) {
@@ -18842,7 +18842,7 @@ var App = function (_React$Component) {
         key: 'render',
         value: function render() {
             var jobList = _jobs2.default.jobs.map(function (job) {
-                return _react2.default.createElement(_Job2.default, { key: job.id, company: job.company, role: job.role, description: job.description, duration: job.duration });
+                return _react2.default.createElement(_Job2.default, { key: job.id, company: job.company, role: job.role, description: job.description, duration: job.duration, job: job });
             });
             return _react2.default.createElement(
                 'div',
@@ -19289,10 +19289,39 @@ var Job = function (_React$Component) {
     function Job() {
         _classCallCheck(this, Job);
 
-        return _possibleConstructorReturn(this, (Job.__proto__ || Object.getPrototypeOf(Job)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Job.__proto__ || Object.getPrototypeOf(Job)).call(this));
+
+        _this.state = { previousJob: "", nextJob: "" };
+        _this.checkPreviousJob = _this.checkPreviousJob.bind(_this);
+        _this.checkNextJob = _this.checkNextJob.bind(_this);
+        return _this;
     }
 
     _createClass(Job, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.checkPreviousJob();
+            this.checkNextJob();
+        }
+    }, {
+        key: 'checkPreviousJob',
+        value: function checkPreviousJob() {
+            var indexOfJob = _jobs2.default.jobs.indexOf(this.props.job);
+            var previousJob = _jobs2.default.jobs[indexOfJob + 1];
+            if (previousJob) {
+                this.setState({ previousJob: previousJob });
+            }
+        }
+    }, {
+        key: 'checkNextJob',
+        value: function checkNextJob() {
+            var indexOfJob = _jobs2.default.jobs.indexOf(this.props.job);
+            var nextJob = _jobs2.default.jobs[indexOfJob - 1];
+            if (nextJob) {
+                this.setState({ nextJob: nextJob });
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             var isWorkVisible = this.props.isWorkVisible;
@@ -19302,6 +19331,34 @@ var Job = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: _job2.default.page + ' job' },
+                this.state.nextJob && _react2.default.createElement(
+                    'div',
+                    { className: _job2.default.switcherNext },
+                    _react2.default.createElement(
+                        'div',
+                        { className: _job2.default.switcherTime },
+                        'Currently'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: _job2.default.switcherCompany },
+                        this.state.nextJob.company
+                    )
+                ),
+                this.state.previousJob && _react2.default.createElement(
+                    'div',
+                    { className: _job2.default.switcherPrevious },
+                    _react2.default.createElement(
+                        'div',
+                        { className: _job2.default.switcherTime },
+                        'Previously'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: _job2.default.switcherCompany },
+                        this.state.previousJob.company
+                    )
+                ),
                 _react2.default.createElement(
                     'div',
                     { className: _job2.default.information },
@@ -19394,7 +19451,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, ".job__page___29-1o {\n    position: relative;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    transition: .25s opacity;\n}\n\n.job__information___1aS5t {\n    position: absolute;\n    top: 100px;\n    right: 100px;\n    display: flex;\n    flex-direction: column;\n    text-align: uppercase;\n}\n\n.job__company___2YITB {\n    color: #55EAFF;\n    /* font-size: 48px; */\n    font-size: 3.35vw;\n    font-weight: 100;\n}\n\n.job__duration___1XnLL {\n    color: rgba(255,255,255,.35);\n    /* font-size: 24px; */\n    font-size: 1.65vw;\n    font-weight: 300;\n}\n\n.job__description___3ZlTU {\n    display: flex;\n    width: 50%;\n    line-height: 1.6;\n    overflow: hidden;\n}\n\n.job__description___3ZlTU p {\n    margin: 0;\n}\n\n.job__pipe___VBUpY {\n    width: 1px;\n    flex-shrink: 0;\n    margin-right: 10px;\n    background-color: #55EAFF;\n}\n\n", ""]);
+exports.push([module.i, ".job__page___29-1o {\n    position: relative;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    transition: .25s opacity;\n}\n\n.job__information___1aS5t {\n    position: absolute;\n    top: 100px;\n    right: 100px;\n    display: flex;\n    flex-direction: column;\n    text-align: uppercase;\n}\n\n.job__company___2YITB {\n    color: #55EAFF;\n    /* font-size: 48px; */\n    font-size: 3.35vw;\n    font-weight: 100;\n}\n\n.job__duration___1XnLL {\n    color: rgba(255,255,255,.35);\n    /* font-size: 24px; */\n    font-size: 1.65vw;\n    font-weight: 300;\n}\n\n.job__description___3ZlTU {\n    display: flex;\n    width: 50%;\n    line-height: 1.6;\n    overflow: hidden;\n}\n\n.job__description___3ZlTU p {\n    margin: 0;\n}\n\n.job__pipe___VBUpY {\n    width: 1px;\n    flex-shrink: 0;\n    margin-right: 10px;\n    background-color: #55EAFF;\n}\n\n.job__switcherNext___3MWZ8, .job__switcherPrevious___4MJ7v {\n    position: absolute;\n    left: 50%;\n    transform: translateX(-50%);\n    text-align: center;\n}\n\n.job__switcherNext___3MWZ8 {\n    top: 2vw;\n}\n\n.job__switcherPrevious___4MJ7v {\n    bottom: 2vw;\n}\n\n.job__switcherTime___2Tbco {\n    font-size: 1vw;\n}\n\n.job__switcherCompany___2t4Ul {\n    font-size: 1.25vw;\n}\n", ""]);
 
 // exports
 exports.locals = {
@@ -19403,7 +19460,11 @@ exports.locals = {
 	"company": "job__company___2YITB",
 	"duration": "job__duration___1XnLL",
 	"description": "job__description___3ZlTU",
-	"pipe": "job__pipe___VBUpY"
+	"pipe": "job__pipe___VBUpY",
+	"switcherNext": "job__switcherNext___3MWZ8",
+	"switcherPrevious": "job__switcherPrevious___4MJ7v",
+	"switcherTime": "job__switcherTime___2Tbco",
+	"switcherCompany": "job__switcherCompany___2t4Ul"
 };
 
 /***/ }),
@@ -19603,7 +19664,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "html, body {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n}\n\nbody {\n  font-family: \"Roboto\";\n  /* font-size: 18px; */\n  font-size: 1.25vw;\n  -webkit-font-smoothing: antialiased;\n  color: white;\n  background-color: #1E1E1E;\n  overflow: hidden;\n}\n\n.general__full___3Sxkh {\n  width: 100%;\n  height: 100%;\n}\n\n.hidden {\n  opacity: 0;\n  pointer-events: none;\n}\n\n.general__pageContainer___qI9nM {\n  transition: .5s transform cubic-bezier(1, -0.2, 0.2, 1);\n}", ""]);
+exports.push([module.i, "html, body {\n    margin: 0;\n    padding: 0;\n    width: 100%;\n    height: 100%;\n}\n\nbody {\n    font-family: \"Roboto\";\n    /* font-size: 18px; */\n    font-size: 1.25vw;\n    -webkit-font-smoothing: antialiased;\n    color: white;\n    background-color: #1E1E1E;\n    overflow: hidden;\n}\n\n.general__full___3Sxkh {\n    width: 100%;\n    height: 100%;\n}\n\n.hidden {\n    opacity: 0;\n    pointer-events: none;\n}\n\n.general__pageContainer___qI9nM {\n    transition: .5s transform cubic-bezier(1, -0.2, 0.2, 1);\n}", ""]);
 
 // exports
 exports.locals = {

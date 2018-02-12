@@ -51,3 +51,25 @@
     background-color: #55EAFF;
 }
 
+.switcherNext, .switcherPrevious {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.switcherNext {
+    top: 2vw;
+}
+
+.switcherPrevious {
+    bottom: 2vw;
+}
+
+.switcherTime {
+    font-size: 1vw;
+}
+
+.switcherCompany {
+    font-size: 1.25vw;
+}

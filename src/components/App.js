@@ -17,10 +17,10 @@ export default class App extends React.Component {
         this.setState({job: job});
     }
     showWork() {
-        console.log(jobs.jobs.indexOf(this.state.job));
-        console.log(jobs.jobs.length - 1);
-        const indexOfJob = jobs.jobs.indexOf(this.state.job);
-        console.log(jobs.jobs[indexOfJob + 1]);
+        // console.log(jobs.jobs.indexOf(this.state.job));
+        // console.log(jobs.jobs.length - 1);
+        // const indexOfJob = jobs.jobs.indexOf(this.state.job);
+        // console.log(jobs.jobs[indexOfJob + 1]);
         this.setState({isWorkVisible: true});
     }
     // transitionPages(pageOut, pageIn) {
@@ -45,7 +45,7 @@ export default class App extends React.Component {
     }
     render() {
         const jobList = jobs.jobs.map((job) =>
-            <Job key={job.id} company={job.company} role={job.role} description={job.description} duration={job.duration} />
+            <Job key={job.id} company={job.company} role={job.role} description={job.description} duration={job.duration} job={job} />
         );
         return (
             <div className={styles.full}>
