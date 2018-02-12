@@ -7,7 +7,8 @@ html, body {
 
 body {
   font-family: "Roboto";
-  font-size: 18px;
+  /* font-size: 18px; */
+  font-size: 1.25vw;
   -webkit-font-smoothing: antialiased;
   color: white;
   background-color: #1E1E1E;
@@ -17,4 +18,13 @@ body {
 .full {
   width: 100%;
   height: 100%;
+}
+
+:global(.hidden) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pageContainer {
+  transition: .5s transform cubic-bezier(1, -0.2, 0.2, 1);
 }

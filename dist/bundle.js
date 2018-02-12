@@ -1401,7 +1401,7 @@ module.exports = focusNode;
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = {"jobs":[{"company":"Williams-Sonoma, Inc.","role":"Front-end Engineer","description":"Front-end Engineer on an agile-driven team that creates and supports an expansive, multi-brand e-commerce platform. Collaborates with back-end and design teams to develop new initiatives utilizing core web technologies, Java and unit tests in SVN and Git workflows.","duration":"April 2017 - Present","id":"0"},{"company":"Bisk Education","role":"Interactive Developer","description":"Responsible for the design and development of internal and external marketing initiatives, including mobile and desktop websites and experiences. Worked extensively with other designers, developers, copywriters, stakeholders and the like to deliver impactful products.","duration":"April 2015 - March 2016","id":"1"}]}
+module.exports = {"jobs":[{"company":"Williams-Sonoma, Inc.","role":"Front-end Engineer","description":"Front-end Engineer on an agile-driven team that creates and supports an expansive, multi-brand e-commerce platform. Collaborates with back-end and design teams to develop new initiatives utilizing core web technologies, Java and unit tests in SVN and Git workflows.","duration":"April 2017 - Present","id":"0","yPos":"-100%"},{"company":"Bisk Education","role":"Interactive Developer","description":"Responsible for the design and development of internal and external marketing initiatives, including mobile and desktop websites and experiences. Worked extensively with other designers, developers, copywriters, stakeholders and the like to deliver impactful products.","duration":"April 2015 - March 2016","id":"1","yPos":"-200%"}]}
 
 /***/ }),
 /* 17 */
@@ -18796,7 +18796,8 @@ var App = function (_React$Component) {
 
         _this.state = { isWorkVisible: false, job: _jobs2.default.jobs[0] };
         _this.showWork = _this.showWork.bind(_this);
-        _this.fadeOut = _this.fadeOut.bind(_this);
+        // this.fadeOut = this.fadeOut.bind(this);
+        // this.transitionPages = this.transitionPages.bind(this);
         return _this;
     }
 
@@ -18808,25 +18809,51 @@ var App = function (_React$Component) {
     }, {
         key: 'showWork',
         value: function showWork() {
-            // setTimeout(function() {
-            //     this.fadeOut(document.querySelector(".full"));
-            // }, 1000);
+            console.log(_jobs2.default.jobs.indexOf(this.state.job));
+            console.log(_jobs2.default.jobs.length - 1);
+            var indexOfJob = _jobs2.default.jobs.indexOf(this.state.job);
+            console.log(_jobs2.default.jobs[indexOfJob + 1]);
             this.setState({ isWorkVisible: true });
         }
+        // transitionPages(pageOut, pageIn) {
+        //     pageOut.classList.add("animateOut");
+        //     setTimeout(() => {
+        //         pageOut.classList.remove("animateOut");
+        //         pageOut.classList.add("hidden");
+        //     }, 500);
+        //     pageIn.classList.add("animateIn");
+        //     setTimeout(() => {
+        //         pageOut.classList.remove("hidden");
+        //         pageOut.classList.remove("animateIn");
+        //     }, 500);
+        // }
+
     }, {
-        key: 'fadeOut',
-        value: function fadeOut(element) {
-            element.classList.add("fadeOut");
+        key: 'checkCurrentJob',
+        value: function checkCurrentJob() {
+            var currentJob = _jobs2.default.jobs.indexOf(this.state.job);
+            var jobLength = _jobs2.default.jobs.length - 1;
+            var jobList = _jobs2.default.jobs;
+            if (jobList - 2) {
+                return true;
+            }
         }
     }, {
         key: 'render',
         value: function render() {
+            var jobList = _jobs2.default.jobs.map(function (job) {
+                return _react2.default.createElement(_Job2.default, { key: job.id, company: job.company, role: job.role, description: job.description, duration: job.duration });
+            });
             return _react2.default.createElement(
                 'div',
                 { className: _general2.default.full },
                 _react2.default.createElement(_Social2.default, null),
-                _react2.default.createElement(_Home2.default, { showWork: this.showWork, isWorkVisible: this.state.isWorkVisible }),
-                this.state.isWorkVisible && _react2.default.createElement(_Job2.default, { key: this.state.job.id, company: this.state.job.company, role: this.state.job.role, description: this.state.job.description, duration: this.state.job.duration })
+                _react2.default.createElement(
+                    'div',
+                    { className: _general2.default.full + ' ' + _general2.default.pageContainer, style: { transform: 'translateY(' + (this.state.isWorkVisible ? '' + this.state.job.yPos : "") } },
+                    _react2.default.createElement(_Home2.default, { showWork: this.showWork, isWorkVisible: this.state.isWorkVisible, transitionPages: this.transitionPages }),
+                    jobList
+                )
             );
         }
     }]);
@@ -18884,7 +18911,7 @@ var Home = function (_React$Component) {
             var isWorkVisible = this.props.isWorkVisible;
             return _react2.default.createElement(
                 'div',
-                { className: '' + _home2.default.home + (isWorkVisible ? ' ' + _home2.default.hidden : "") },
+                { className: _home2.default.home + ' home' },
                 _react2.default.createElement(
                     'div',
                     { className: _home2.default.hero },
@@ -18985,12 +19012,11 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, ".home__home___1_D4E {\n    display: flex;\n    width: 100%;\n    height: 100%;\n    justify-content: center;\n    align-items: center;\n}\n\n.home__hidden___3xp9b {\n    display: none;\n}\n\n.home__hero___1yNo5 {\n    text-align: center;\n}\n\n.home__header___2CSLf {\n    color: rgba(255,255,255,.35);\n    font-weight: 300;\n    font-size: 36px;\n    text-transform: uppercase;\n}\n\n.home__subHeader___3tRMH {\n    margin: 0;\n}\n\n.home__accentColor___2lZF6 {\n    color: #55EAFF;\n}", ""]);
+exports.push([module.i, ".home__home___1_D4E {\n    display: flex;\n    width: 100%;\n    height: 100%;\n    justify-content: center;\n    align-items: center;\n    transition: .25s opacity;\n}\n\n.home__hero___1yNo5 {\n    text-align: center;\n}\n\n.home__header___2CSLf {\n    color: rgba(255,255,255,.35);\n    font-weight: 300;\n    /* font-size: 36px; */\n    font-size: 2.5vw;\n    text-transform: uppercase;\n}\n\n.home__subHeader___3tRMH {\n    margin: 0;\n}\n\n.home__accentColor___2lZF6 {\n    color: #55EAFF;\n}", ""]);
 
 // exports
 exports.locals = {
 	"home": "home__home___1_D4E",
-	"hidden": "home__hidden___3xp9b",
 	"hero": "home__hero___1yNo5",
 	"header": "home__header___2CSLf",
 	"subHeader": "home__subHeader___3tRMH",
@@ -19214,7 +19240,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, ".learnMore__accentColor___15X1f {\n    color: #55EAFF;\n}\n\n.learnMore__container___eZdLS {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    position: absolute;\n    height: 33%;\n    bottom: 0;\n}\n\n.learnMore__button___3smmd {\n    background-color: #55EAFF;\n    width: 30px;\n    height: 30px;\n    border-radius: 50%;\n    margin-right: 10px;\n}\n\n.learnMore__text___1xf9Y {\n    text-transform: uppercase;\n    font-size: 14px;\n}", ""]);
+exports.push([module.i, ".learnMore__accentColor___15X1f {\n    color: #55EAFF;\n}\n\n.learnMore__container___eZdLS {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    position: absolute;\n    height: 33%;\n    bottom: 0;\n    cursor: pointer;\n}\n\n.learnMore__button___3smmd {\n    background-color: #55EAFF;\n    /* width: 30px; */\n    width: 2vw;\n    /* height: 30px; */\n    height: 2vw;\n    border-radius: 50%;\n    /* margin-right: 10px; */\n    margin-right: 1vw;\n}\n\n.learnMore__text___1xf9Y {\n    text-transform: uppercase;\n    /* font-size: 14px; */\n    font-size: 1vw;\n}", ""]);
 
 // exports
 exports.locals = {
@@ -19269,12 +19295,13 @@ var Job = function (_React$Component) {
     _createClass(Job, [{
         key: 'render',
         value: function render() {
+            var isWorkVisible = this.props.isWorkVisible;
             var jobList = _jobs2.default.jobs.map(function (job) {
                 return _react2.default.createElement(Job, { key: job.id, company: job.company, role: job.role, description: job.description, duration: job.duration });
             });
             return _react2.default.createElement(
                 'div',
-                { className: _job2.default.page },
+                { className: _job2.default.page + ' job' },
                 _react2.default.createElement(
                     'div',
                     { className: _job2.default.information },
@@ -19367,7 +19394,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, ".job__page___29-1o {\n    position: relative;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.job__information___1aS5t {\n    position: absolute;\n    top: 100px;\n    right: 100px;\n    display: flex;\n    flex-direction: column;\n    text-align: uppercase;\n}\n\n.job__company___2YITB {\n    color: #55EAFF;\n    font-size: 48px;\n    font-weight: 100;\n}\n\n.job__duration___1XnLL {\n    color: rgba(255,255,255,.35);\n    font-size: 24px;\n    font-weight: 300;\n}\n\n.job__description___3ZlTU {\n    display: flex;\n    width: 50%;\n    line-height: 1.6;\n    overflow: hidden;\n}\n\n.job__description___3ZlTU p {\n    margin: 0;\n}\n\n.job__pipe___VBUpY {\n    width: 1px;\n    flex-shrink: 0;\n    margin-right: 10px;\n    background-color: #55EAFF;\n}\n\n", ""]);
+exports.push([module.i, ".job__page___29-1o {\n    position: relative;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    transition: .25s opacity;\n}\n\n.job__information___1aS5t {\n    position: absolute;\n    top: 100px;\n    right: 100px;\n    display: flex;\n    flex-direction: column;\n    text-align: uppercase;\n}\n\n.job__company___2YITB {\n    color: #55EAFF;\n    /* font-size: 48px; */\n    font-size: 3.35vw;\n    font-weight: 100;\n}\n\n.job__duration___1XnLL {\n    color: rgba(255,255,255,.35);\n    /* font-size: 24px; */\n    font-size: 1.65vw;\n    font-weight: 300;\n}\n\n.job__description___3ZlTU {\n    display: flex;\n    width: 50%;\n    line-height: 1.6;\n    overflow: hidden;\n}\n\n.job__description___3ZlTU p {\n    margin: 0;\n}\n\n.job__pipe___VBUpY {\n    width: 1px;\n    flex-shrink: 0;\n    margin-right: 10px;\n    background-color: #55EAFF;\n}\n\n", ""]);
 
 // exports
 exports.locals = {
@@ -19509,7 +19536,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, ".social__container___vxngH {\n    display: flex;\n    position: fixed;\n    right: 20px;\n    bottom: 20px;\n    z-index: 1;\n    user-select: none;\n}\n\n.social__icon___2ViaG {\n    cursor: pointer;\n}\n\n.social__icon___2ViaG:not(:last-child) {\n    margin-right: 20px;\n}", ""]);
+exports.push([module.i, ".social__container___vxngH {\n    display: flex;\n    position: fixed;\n    /* right: 20px; */\n    /* bottom: 20px; */\n    right: 2vw;\n    bottom: 2vw;\n    z-index: 1;\n    user-select: none;\n}\n\n.social__icon___2ViaG {\n    cursor: pointer;\n    height: 1.5vw;\n}\n\n.social__icon___2ViaG img {\n    height: 100%;\n}\n\n.social__icon___2ViaG:not(:last-child) {\n    /* margin-right: 20px; */\n    margin-right: 1.5vw;\n}", ""]);
 
 // exports
 exports.locals = {
@@ -19576,11 +19603,12 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "html, body {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n}\n\nbody {\n  font-family: \"Roboto\";\n  font-size: 18px;\n  -webkit-font-smoothing: antialiased;\n  color: white;\n  background-color: #1E1E1E;\n  overflow: hidden;\n}\n\n.general__full___3Sxkh {\n  width: 100%;\n  height: 100%;\n}", ""]);
+exports.push([module.i, "html, body {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n}\n\nbody {\n  font-family: \"Roboto\";\n  /* font-size: 18px; */\n  font-size: 1.25vw;\n  -webkit-font-smoothing: antialiased;\n  color: white;\n  background-color: #1E1E1E;\n  overflow: hidden;\n}\n\n.general__full___3Sxkh {\n  width: 100%;\n  height: 100%;\n}\n\n.hidden {\n  opacity: 0;\n  pointer-events: none;\n}\n\n.general__pageContainer___qI9nM {\n  transition: .5s transform cubic-bezier(1, -0.2, 0.2, 1);\n}", ""]);
 
 // exports
 exports.locals = {
-	"full": "general__full___3Sxkh"
+	"full": "general__full___3Sxkh",
+	"pageContainer": "general__pageContainer___qI9nM"
 };
 
 /***/ })

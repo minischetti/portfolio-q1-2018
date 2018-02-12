@@ -1,16 +1,24 @@
 .container {
     display: flex;
     position: fixed;
-    right: 20px;
-    bottom: 20px;
+    /* right: 20px; */
+    /* bottom: 20px; */
+    right: 2vw;
+    bottom: 2vw;
     z-index: 1;
     user-select: none;
 }
 
 .icon {
     cursor: pointer;
+    height: 1.5vw;
+}
+
+.icon img {
+    height: 100%;
 }
 
 .icon:not(:last-child) {
-    margin-right: 20px;
+    /* margin-right: 20px; */
+    margin-right: 1.5vw;
 }
