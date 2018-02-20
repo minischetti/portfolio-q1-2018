@@ -1,18 +1,31 @@
 import React from 'react';
-import styles from '../../dist/styles/job.css';
 import jobs from '../data/jobs.json';
 
 export default class Job extends React.Component {
     constructor() {
         super();
-        this.state = ({previousJob: "", nextJob: ""})
+        this.state = ({animate: false, animateIn: false, animateOut: false, previousJob: "", nextJob: ""})
         this.checkPreviousJob = this.checkPreviousJob.bind(this);
         this.checkNextJob = this.checkNextJob.bind(this);
     }
     componentDidMount() {
         this.checkPreviousJob();
         this.checkNextJob();
+        this.setState({animate: true}, () => {
+            setTimeout(() => {
+                this.setState({animate: false});
+            }, 5000);
+        })
     }
+
+    componentWillReceiveProps() {
+        this.setState({ animate: true }, () => {
+            setTimeout(() => {
+                this.setState({ animate: false });
+            }, 5000);
+        })    
+    }
+
     checkPreviousJob() {
         const indexOfJob = jobs.jobs.indexOf(this.props.job);
         const previousJob = jobs.jobs[indexOfJob + 1];
@@ -33,26 +46,30 @@ export default class Job extends React.Component {
             <Job key={job.id} company={job.company} role={job.role} description={job.description} duration={job.duration}/>
         );
         return (
-            <div className={`${styles.page} job`}>
+            <div className={`job${this.state.animate ? " hidden" : ""}`}>
                 {this.state.nextJob &&
-                <div className={styles.switcherNext}>
-                    <div className={styles.switcherTime}>Currently</div>
-                    <div className={styles.switcherCompany}>{this.state.nextJob.company}</div>
-                </div>
+                    <div className="company-switcher-next" onClick={this.props.updateJob(this.state.nextJob)}>
+                        <div className="company-switcher-time">Currently</div>
+                        <div className="company-switcher-name">{this.state.nextJob.company}</div>
+                    </div>
                 }
                 {this.state.previousJob &&
-                <div className={styles.switcherPrevious}>
-                    <div className={styles.switcherTime}>Previously</div>
-                    <div className={styles.switcherCompany}>{this.state.previousJob.company}</div>
-                </div>
+                    <div className="company-switcher-previous" onClick={this.props.updateJob(this.state.previousJob)}>
+                        <div className="company-switcher-time">Previously</div>
+                        <div className="company-switcher-name">{this.state.previousJob.company}</div>
+                    </div>
                 }
-                <div className={styles.information}>
-                    <span className={styles.company}>{this.props.company}</span>
-                    <span className={styles.duration}>{this.props.duration}</span>
+                <div className="company-information">
+                    <div className="overflow-container">
+                        <div className="company-name">{this.props.job.company}</div>
+                    </div>
+                    <div className="overflow-container">
+                        <div className="company-duration">{this.props.job.duration}</div>
+                    </div>
                 </div>
-                <div className={styles.description}>
-                    <span className={styles.pipe}></span>
-                    <p>{this.props.description}</p>
+                <div className="company-description">
+                    <span className="company-pipe"></span>
+                    <p>{this.props.job.description}</p>
                 </div>
             </div>
         )

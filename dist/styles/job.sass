@@ -1,0 +1,79 @@
+.job
+  position: relative
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  transition: .25s opacity
+
+.company-information
+  position: absolute
+  top: 100px
+  right: 100px
+  display: flex
+  flex-direction: column
+  text-align: uppercase
+
+
+.company-name
+  /* color: #55EAFF; */
+  /* font-size: 48px; */
+  font-size: 3.35vw
+  font-weight: 100
+  // transform: translateY(100%)
+  // opacity: 0
+  // color: rgba(255, 255, 255, 0.35)
+  transition: .5s all
+  color: #55EAFF
+  transform: none
+  opacity: 1
+
+.company-duration
+  color: rgba(255, 255, 255, 0.35)
+  /* font-size: 24px; */
+  font-size: 1.65vw
+  font-weight: 300
+  transition: .5s all
+
+.company-description
+  display: flex
+  width: 50%
+  line-height: 1.6
+  overflow: hidden
+  p
+    margin: 0
+
+.company-pipe
+  width: 1px
+  flex-shrink: 0
+  margin-right: 10px
+  background-color: #55EAFF
+
+.company-switcher-next, .company-switcher-previous
+  position: absolute
+  left: 50%
+  transform: translateX(-50%)
+  text-align: center
+
+.company-switcher-next
+  top: 2vw
+
+.company-switcher-previous
+  bottom: 2vw
+
+.company-switcher-time
+  font-size: 1vw
+
+.company-switcher-name
+  font-size: 1.25vw
+
+.hidden
+  .company-name
+    transform: translateY(100%)
+    opacity: 0
+  .company-duration
+    transform: translateY(-100%)
+    opacity: 0
