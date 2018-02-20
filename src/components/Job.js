@@ -4,42 +4,62 @@ import jobs from '../data/jobs.json';
 export default class Job extends React.Component {
     constructor() {
         super();
-        this.state = ({animate: false, animateIn: false, animateOut: false, previousJob: "", nextJob: ""})
-        this.checkPreviousJob = this.checkPreviousJob.bind(this);
-        this.checkNextJob = this.checkNextJob.bind(this);
+        this.state = ({animate: false, animateIn: false, animateOut: false})
+        // this.checkPreviousJob = this.checkPreviousJob.bind(this);
+        // this.checkNextJob = this.checkNextJob.bind(this);
+        // this.setPreviousJob = this.setPreviousJob.bind(this);
+        // this.setNextJob = this.setNextJob.bind(this);
     }
+
     componentDidMount() {
-        this.checkPreviousJob();
-        this.checkNextJob();
-        this.setState({animate: true}, () => {
-            setTimeout(() => {
-                this.setState({animate: false});
-            }, 5000);
-        })
+        // this.setState({ previousJob: this.checkPreviousJob(), nextJob: this.checkNextJob() })
+        // this.setState({animate: true}, () => {
+        //     setTimeout(() => {
+        //         this.setState({animate: false});
+        //     }, 5000);
+        // })
     }
 
-    componentWillReceiveProps() {
-        this.setState({ animate: true }, () => {
-            setTimeout(() => {
-                this.setState({ animate: false });
-            }, 5000);
-        })    
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps !== this.props) {
+    //         this.setState({ previousJob: this.checkPreviousJob(), nextJob: this.checkNextJob() })
+    //         // this.checkPreviousJob();
+    //         // this.checkNextJob();
+    //         // this.setState({ animate: true }, () => {
+    //         //     setTimeout(() => {
+    //         //         this.setState({ animate: false });
+    //         //     }, 5000);
+    //         // })
+    //     }
+    // }
 
-    checkPreviousJob() {
-        const indexOfJob = jobs.jobs.indexOf(this.props.job);
-        const previousJob = jobs.jobs[indexOfJob + 1];
-        if (previousJob) {
-            this.setState({previousJob: previousJob});
-        }
-    }
-    checkNextJob() {
-        const indexOfJob = jobs.jobs.indexOf(this.props.job);
-        const nextJob = jobs.jobs[indexOfJob - 1];
-        if (nextJob) {
-            this.setState({nextJob: nextJob});
-        }
-    }
+    // setPreviousJob(previousJob) {
+    //     this.setState({previousJob: previousJob});
+    // }
+    // setNextJob(nextJob) {
+    //     this.setState({nextJob: nextJob});
+    // }
+
+    // checkPreviousJob() {
+    //     const indexOfJob = jobs.jobs.indexOf(this.props.job);
+    //     const previousJob = jobs.jobs[indexOfJob + 1];
+    //     if (previousJob) {
+    //         return previousJob;
+    //     } else {
+    //         return "";
+    //     }
+    // }
+
+    // checkNextJob() {
+    //     const indexOfJob = jobs.jobs.indexOf(this.props.job);
+    //     const nextJob = jobs.jobs[indexOfJob - 1];
+    //     if (nextJob) {
+    //         return nextJob;
+    //     } else {
+    //         return "";
+    //     }
+    // }
+
     render() {
         const isWorkVisible = this.props.isWorkVisible;
         const jobList = jobs.jobs.map((job) =>
@@ -47,16 +67,16 @@ export default class Job extends React.Component {
         );
         return (
             <div className={`job${this.state.animate ? " hidden" : ""}`}>
-                {this.state.nextJob &&
-                    <div className="company-switcher-next" onClick={this.props.updateJob(this.state.nextJob)}>
+                {this.props.nextJob &&
+                    <div className="company-switcher-next" onClick={() => this.props.updateCurrentJob(this.props.nextJob)}>
                         <div className="company-switcher-time">Currently</div>
-                        <div className="company-switcher-name">{this.state.nextJob.company}</div>
+                        <div className="company-switcher-name">{this.props.nextJob.company}</div>
                     </div>
                 }
-                {this.state.previousJob &&
-                    <div className="company-switcher-previous" onClick={this.props.updateJob(this.state.previousJob)}>
+                {this.props.previousJob &&
+                    <div className="company-switcher-previous" onClick={() => this.props.updateCurrentJob(this.props.previousJob)}>
                         <div className="company-switcher-time">Previously</div>
-                        <div className="company-switcher-name">{this.state.previousJob.company}</div>
+                        <div className="company-switcher-name">{this.props.previousJob.company}</div>
                     </div>
                 }
                 <div className="company-information">

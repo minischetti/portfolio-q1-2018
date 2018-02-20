@@ -939,7 +939,7 @@ module.exports = focusNode;
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = {"jobs":[{"company":"Williams-Sonoma, Inc.","role":"Front-end Engineer","description":"Front-end Engineer on an agile-driven team that creates and supports an expansive, multi-brand e-commerce platform. Collaborates with back-end and design teams to develop new initiatives utilizing core web technologies, Java and unit tests in SVN and Git workflows.","duration":"April 2017 - Present","id":"0","yPos":"-100%"},{"company":"Bisk Education","role":"Interactive Developer","description":"Responsible for the design and development of internal and external marketing initiatives, including mobile and desktop websites and experiences. Worked extensively with other designers, developers, copywriters, stakeholders and the like to deliver impactful products.","duration":"April 2015 - March 2016","id":"1","yPos":"-200%"}]}
+module.exports = {"jobs":[{"company":"Williams-Sonoma, Inc.","role":"Front-end Engineer","description":"Front-end Engineer on an agile-driven team that creates and supports an expansive, multi-brand e-commerce platform. Collaborates with back-end and design teams to develop new initiatives utilizing core web technologies, Java and unit tests in SVN and Git workflows.","duration":"April 2017 - Present","id":"0"},{"company":"Bisk Education","role":"Interactive Developer","description":"Responsible for the design and development of internal and external marketing initiatives, including mobile and desktop websites and experiences. Worked extensively with other designers, developers, copywriters, stakeholders and the like to deliver impactful products.","duration":"April 2015 - March 2016","id":"1"}]}
 
 /***/ }),
 /* 17 */
@@ -18328,20 +18328,56 @@ var App = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-        _this.state = { isWorkVisible: false, job: _jobs2.default.jobs[0] };
+        _this.state = { isWorkVisible: false, job: _jobs2.default.jobs[0], previousJob: "", nextJob: "" };
         _this.showWork = _this.showWork.bind(_this);
+        _this.updateCurrentJob = _this.updateCurrentJob.bind(_this);
+        _this.checkPreviousJob = _this.checkPreviousJob.bind(_this);
+        _this.checkNextJob = _this.checkNextJob.bind(_this);
         return _this;
     }
 
     _createClass(App, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.checkPreviousJob();
+            this.checkNextJob();
+        }
+    }, {
         key: 'updateCurrentJob',
         value: function updateCurrentJob(job) {
-            this.setState({ job: job });
+            var _this2 = this;
+
+            this.setState({ job: job }, function () {
+                _this2.checkPreviousJob();
+                _this2.checkNextJob();
+            });
         }
     }, {
         key: 'showWork',
         value: function showWork() {
             this.setState({ isWorkVisible: true });
+        }
+    }, {
+        key: 'checkPreviousJob',
+        value: function checkPreviousJob() {
+            var indexOfJob = _jobs2.default.jobs.indexOf(this.state.job);
+            var previousJob = _jobs2.default.jobs[indexOfJob + 1];
+            if (previousJob) {
+                this.setState({ previousJob: previousJob });
+            } else {
+                this.setState({ previousJob: "" });
+            }
+        }
+    }, {
+        key: 'checkNextJob',
+        value: function checkNextJob() {
+            var indexOfJob = _jobs2.default.jobs.indexOf(this.state.job);
+            var nextJob = _jobs2.default.jobs[indexOfJob - 1];
+            if (nextJob) {
+                this.setState({ nextJob: nextJob });
+            } else {
+                this.setState({ nextJob: "" });
+            }
         }
     }, {
         key: 'render',
@@ -18352,9 +18388,9 @@ var App = function (_React$Component) {
                 _react2.default.createElement(_Social2.default, null),
                 _react2.default.createElement(
                     'div',
-                    { className: 'full', style: { transform: 'translateY(' + (this.state.isWorkVisible ? '' + this.state.job.yPos : "") } },
+                    { className: 'full', style: { transform: 'translateY(' + (this.state.isWorkVisible ? '-100%' : "") } },
                     _react2.default.createElement(_Home2.default, { showWork: this.showWork, isWorkVisible: this.state.isWorkVisible, transitionPages: this.transitionPages }),
-                    _react2.default.createElement(_Job2.default, { job: this.state.job })
+                    this.state.isWorkVisible && _react2.default.createElement(_Job2.default, { job: this.state.job, previousJob: this.state.previousJob, nextJob: this.state.nextJob, updateCurrentJob: this.updateCurrentJob })
                 )
             );
         }
@@ -18552,57 +18588,70 @@ var Job = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Job.__proto__ || Object.getPrototypeOf(Job)).call(this));
 
-        _this.state = { animate: false, animateIn: false, animateOut: false, previousJob: "", nextJob: "" };
-        _this.checkPreviousJob = _this.checkPreviousJob.bind(_this);
-        _this.checkNextJob = _this.checkNextJob.bind(_this);
+        _this.state = { animate: false, animateIn: false, animateOut: false };
+        // this.checkPreviousJob = this.checkPreviousJob.bind(this);
+        // this.checkNextJob = this.checkNextJob.bind(this);
+        // this.setPreviousJob = this.setPreviousJob.bind(this);
+        // this.setNextJob = this.setNextJob.bind(this);
         return _this;
     }
 
     _createClass(Job, [{
         key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _this2 = this;
+        value: function componentDidMount() {}
+        // this.setState({ previousJob: this.checkPreviousJob(), nextJob: this.checkNextJob() })
+        // this.setState({animate: true}, () => {
+        //     setTimeout(() => {
+        //         this.setState({animate: false});
+        //     }, 5000);
+        // })
 
-            this.checkPreviousJob();
-            this.checkNextJob();
-            this.setState({ animate: true }, function () {
-                setTimeout(function () {
-                    _this2.setState({ animate: false });
-                }, 5000);
-            });
-        }
-    }, {
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps() {
-            var _this3 = this;
 
-            this.setState({ animate: true }, function () {
-                setTimeout(function () {
-                    _this3.setState({ animate: false });
-                }, 5000);
-            });
-        }
-    }, {
-        key: 'checkPreviousJob',
-        value: function checkPreviousJob() {
-            var indexOfJob = _jobs2.default.jobs.indexOf(this.props.job);
-            var previousJob = _jobs2.default.jobs[indexOfJob + 1];
-            if (previousJob) {
-                this.setState({ previousJob: previousJob });
-            }
-        }
-    }, {
-        key: 'checkNextJob',
-        value: function checkNextJob() {
-            var indexOfJob = _jobs2.default.jobs.indexOf(this.props.job);
-            var nextJob = _jobs2.default.jobs[indexOfJob - 1];
-            if (nextJob) {
-                this.setState({ nextJob: nextJob });
-            }
-        }
+        // componentWillReceiveProps(nextProps) {
+        //     if (nextProps !== this.props) {
+        //         this.setState({ previousJob: this.checkPreviousJob(), nextJob: this.checkNextJob() })
+        //         // this.checkPreviousJob();
+        //         // this.checkNextJob();
+        //         // this.setState({ animate: true }, () => {
+        //         //     setTimeout(() => {
+        //         //         this.setState({ animate: false });
+        //         //     }, 5000);
+        //         // })
+        //     }
+        // }
+
+        // setPreviousJob(previousJob) {
+        //     this.setState({previousJob: previousJob});
+        // }
+        // setNextJob(nextJob) {
+        //     this.setState({nextJob: nextJob});
+        // }
+
+        // checkPreviousJob() {
+        //     const indexOfJob = jobs.jobs.indexOf(this.props.job);
+        //     const previousJob = jobs.jobs[indexOfJob + 1];
+        //     if (previousJob) {
+        //         return previousJob;
+        //     } else {
+        //         return "";
+        //     }
+        // }
+
+        // checkNextJob() {
+        //     const indexOfJob = jobs.jobs.indexOf(this.props.job);
+        //     const nextJob = jobs.jobs[indexOfJob - 1];
+        //     if (nextJob) {
+        //         return nextJob;
+        //     } else {
+        //         return "";
+        //     }
+        // }
+
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             var isWorkVisible = this.props.isWorkVisible;
             var jobList = _jobs2.default.jobs.map(function (job) {
                 return _react2.default.createElement(Job, { key: job.id, company: job.company, role: job.role, description: job.description, duration: job.duration });
@@ -18610,9 +18659,11 @@ var Job = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'job' + (this.state.animate ? " hidden" : "") },
-                this.state.nextJob && _react2.default.createElement(
+                this.props.nextJob && _react2.default.createElement(
                     'div',
-                    { className: 'company-switcher-next', onClick: this.props.updateJob(this.state.nextJob) },
+                    { className: 'company-switcher-next', onClick: function onClick() {
+                            return _this2.props.updateCurrentJob(_this2.props.nextJob);
+                        } },
                     _react2.default.createElement(
                         'div',
                         { className: 'company-switcher-time' },
@@ -18621,12 +18672,14 @@ var Job = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'company-switcher-name' },
-                        this.state.nextJob.company
+                        this.props.nextJob.company
                     )
                 ),
-                this.state.previousJob && _react2.default.createElement(
+                this.props.previousJob && _react2.default.createElement(
                     'div',
-                    { className: 'company-switcher-previous', onClick: this.props.updateJob(this.state.previousJob) },
+                    { className: 'company-switcher-previous', onClick: function onClick() {
+                            return _this2.props.updateCurrentJob(_this2.props.previousJob);
+                        } },
                     _react2.default.createElement(
                         'div',
                         { className: 'company-switcher-time' },
@@ -18635,7 +18688,7 @@ var Job = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'company-switcher-name' },
-                        this.state.previousJob.company
+                        this.props.previousJob.company
                     )
                 ),
                 _react2.default.createElement(
