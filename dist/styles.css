@@ -98,6 +98,30 @@
   transform: translateY(-100%);
   opacity: 0; }
 
+.fade-appear, .fade-enter {
+  opacity: 0;
+  transform: translateY(100%); }
+
+.fade-appear-active {
+  transform: none;
+  opacity: 1;
+  transition: 1s all; }
+
+.fade-enter-active {
+  transform: none;
+  opacity: 1;
+  transition: 1s all;
+  transition-delay: 1s; }
+
+.fade-exit, .fade-leave {
+  opacity: 1;
+  transform: none; }
+
+.fade-exit-active, .fade-leave-active {
+  opacity: 0.01;
+  transform: translateY(100%);
+  transition: 1s all; }
+
 .accent-color {
   color: #55EAFF; }
 
