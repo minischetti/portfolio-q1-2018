@@ -5,6 +5,13 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group';
 export default class Job extends React.Component {
     constructor() {
         super();
+        this.state = {animate: false}
+    }
+    componentWillReceiveProps() {
+        this.setState({animate: true});
+        setTimeout(() => {
+            this.setState({animate: false});
+        }, 1000);
     }
     render() {
         const isWorkVisible = this.props.isWorkVisible;
@@ -23,17 +30,16 @@ export default class Job extends React.Component {
                     </div>
                 }
                 <div className="company-information">
+                    <div>{this.state.animate}</div>
                     <div className="overflow-container">
-                        <TransitionGroup>
-                            <CSSTransition timeout={{ enter: 1000, exit: 1000 }} classNames="fade" mountOnEnter={true} unmountOnExit={true} appear={true} in={true} key={this.props.job.id}>
+                        <CSSTransition timeout={1000} classNames="slideUp" in={true} exit={this.state.animate} mountOnEnter={true} unmountOnExit={false} appear={true} key={this.props.job.id}>
                             <div className="company-name">{this.props.job.company}</div>
                         </CSSTransition>
-                        </TransitionGroup>
-                        {/* <Fade in={this.props.isWorkVisible}>
-                        </Fade> */}
                     </div>
                     <div className="overflow-container">
-                        <div className="company-duration">{this.props.job.duration}</div>
+                        <CSSTransition timeout={1000} classNames="slideDown" in={true} exit={this.state.animate} mountOnEnter={true} unmountOnExit={false} appear={true} key={this.props.job.id}>
+                            <div className="company-duration">{this.props.job.duration}</div>
+                        </CSSTransition>
                     </div>
                 </div>
                 <div className="company-description">

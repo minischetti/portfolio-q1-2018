@@ -70,35 +70,53 @@
 .company-switcher-name
   font-size: 1.25vw
 
-.hidden
-  .company-name
-    transform: translateY(100%)
-    opacity: 0
-  .company-duration
-    transform: translateY(-100%)
-    opacity: 0
-
-
-.fade-appear, .fade-enter
+.slideUp-appear, .slideUp-enter
   opacity: 0
   transform: translateY(100%)
 
-.fade-appear-active
+.slideUp-appear-active
   transform: none
   opacity: 1
   transition: 1s all
 
-.fade-enter-active
+.slideUp-enter-active
   transform: none
   opacity: 1
   transition: 1s all
-  transition-delay: 1s
+  // transition-delay: 1s
 
-.fade-exit, .fade-leave
+.slideUp-exit, .slideUp-leave
   opacity: 1
   transform: none
 
-.fade-exit-active, .fade-leave-active
+.slideUp-exit-active, .slideUp-leave-active
   opacity: 0.01
-  transform: translateY(100%)
+  transform: translateY(-100%)
   transition: 1s all
+  transition-delay: .2s
+
+.slideDown-appear, .slideDown-enter
+  opacity: 0
+  transform: translateY(-100%)
+
+.slideDown-appear-active
+  transform: none
+  opacity: 1
+  transition: 1s all
+  transition-delay: .2s
+
+.slideDown-enter-active
+  transform: none
+  opacity: 1
+  transition: 1s all
+  transition-delay: .2s
+
+.slideDown-exit, .slideDown-leave
+  opacity: 1
+  transform: none
+
+.slideDown-exit-active, .slideDown-leave-active
+  opacity: 0.01
+  transform: translateY(-100%)
+  transition: 1s all
+  transition-delay: .2s
