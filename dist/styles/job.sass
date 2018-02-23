@@ -117,6 +117,58 @@
 
 .slideDown-exit-active, .slideDown-leave-active
   opacity: 0.01
-  transform: translateY(-100%)
+  transform: translateX(-100%)
   transition: 1s all
   transition-delay: .2s
+
+.slideRight-appear, .slideRight-enter
+  opacity: 0
+  transform: translateX(-5%)
+
+.slideRight-appear-active
+  transform: none
+  opacity: 1
+  transition: 1s all
+  transition-delay: .8s
+
+.slideRight-enter-active
+  transform: none
+  opacity: 1
+  transition: 1s all
+  transition-delay: .8s
+
+.slideRight-exit, .slideRight-leave
+  opacity: 1
+  transform: none
+
+.slideRight-exit-active, .slideRight-leave-active
+  opacity: 0.01
+  transform: scale(0)
+  transition: 1s all
+  transition-delay: .8s
+
+.scaleUp-appear, .scaleUp-enter
+  opacity: 0
+  transform: scale(0)
+
+.scaleUp-appear-active
+  transform: none
+  opacity: 1
+  transition: 1s all
+  transition-delay: .4s
+
+.scaleUp-enter-active
+  transform: none
+  opacity: 1
+  transition: 1s all
+  transition-delay: .4s
+
+.scaleUp-exit, .scaleUp-leave
+  opacity: 1
+  transform: none
+
+.scaleUp-exit-active, .scaleUp-leave-active
+  opacity: 0.01
+  transform: scale(0)
+  transition: 1s all
+  transition-delay: .4s

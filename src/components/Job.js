@@ -44,7 +44,10 @@ export default class Job extends React.Component {
                 </div>
                 <div className="company-description">
                     <span className="company-pipe"></span>
-                    <p>{this.props.job.description}</p>
+                    <CSSTransition timeout={1000} classNames="slideRight" in={true} exit={this.state.animate} mountOnEnter={true} unmountOnExit={false} appear={true} key={this.props.job.id}>
+                        <p>{this.props.job.description}</p>
+                    </CSSTransition>
+
                 </div>
             </div>
         )

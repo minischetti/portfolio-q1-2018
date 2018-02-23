@@ -19332,9 +19332,13 @@ var Job = function (_React$Component) {
                     { className: 'company-description' },
                     _react2.default.createElement('span', { className: 'company-pipe' }),
                     _react2.default.createElement(
-                        'p',
-                        null,
-                        this.props.job.description
+                        _reactTransitionGroup.CSSTransition,
+                        { timeout: 1000, classNames: 'slideRight', 'in': true, exit: this.state.animate, mountOnEnter: true, unmountOnExit: false, appear: true, key: this.props.job.id },
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            this.props.job.description
+                        )
                     )
                 )
             );
