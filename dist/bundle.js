@@ -19042,7 +19042,7 @@ var App = function (_React$Component) {
                     'div',
                     { className: 'full', style: { transform: 'translateY(' + (this.state.isWorkVisible ? '-100%' : "") } },
                     _react2.default.createElement(_Home2.default, { showWork: this.showWork, isWorkVisible: this.state.isWorkVisible, transitionPages: this.transitionPages }),
-                    this.state.isWorkVisible && _react2.default.createElement(_Job2.default, { job: this.state.job, previousJob: this.state.previousJob, nextJob: this.state.nextJob, updateCurrentJob: this.updateCurrentJob })
+                    this.state.isWorkVisible && _react2.default.createElement(_Job2.default, { job: this.state.job, previousJob: this.state.previousJob, nextJob: this.state.nextJob, updateCurrentJob: this.updateCurrentJob, checkNextJob: this.checkNextJob, checkPreviousJob: this.checkPreviousJob })
                 )
             );
         }
@@ -19237,18 +19237,19 @@ var Job = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Job.__proto__ || Object.getPrototypeOf(Job)).call(this));
 
-        _this.state = { animate: false };
+        _this.state = { animate: true };
         return _this;
     }
 
     _createClass(Job, [{
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps() {
+        key: 'updateCurrentJob',
+        value: function updateCurrentJob(job) {
             var _this2 = this;
 
-            this.setState({ animate: true });
+            this.setState({ animate: false });
             setTimeout(function () {
-                _this2.setState({ animate: false });
+                _this2.setState({ animate: true });
+                _this2.props.updateCurrentJob(job);
             }, 1000);
         }
     }, {
@@ -19261,35 +19262,43 @@ var Job = function (_React$Component) {
                 'div',
                 { className: 'job' },
                 this.props.nextJob && _react2.default.createElement(
-                    'div',
-                    { className: 'company-switcher-next', onClick: function onClick() {
-                            return _this3.props.updateCurrentJob(_this3.props.nextJob);
-                        } },
+                    _reactTransitionGroup.CSSTransition,
+                    { timeout: 1000, classNames: 'switcherSlideDown', 'in': this.state.animate, exit: !this.state.animate, mountOnEnter: true, unmountOnExit: true, appear: true, key: this.props.job.id },
                     _react2.default.createElement(
                         'div',
-                        { className: 'company-switcher-time' },
-                        'Currently'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'company-switcher-name' },
-                        this.props.nextJob.company
+                        { className: 'company-switcher-next', onClick: function onClick() {
+                                return _this3.updateCurrentJob(_this3.props.nextJob);
+                            } },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'company-switcher-time' },
+                            'Currently'
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'company-switcher-name' },
+                            this.props.nextJob.company
+                        )
                     )
                 ),
                 this.props.previousJob && _react2.default.createElement(
-                    'div',
-                    { className: 'company-switcher-previous', onClick: function onClick() {
-                            return _this3.props.updateCurrentJob(_this3.props.previousJob);
-                        } },
+                    _reactTransitionGroup.CSSTransition,
+                    { timeout: 1000, classNames: 'switcherSlideUp', 'in': this.state.animate, exit: !this.state.animate, mountOnEnter: false, unmountOnExit: false, appear: true, key: this.props.job.id },
                     _react2.default.createElement(
                         'div',
-                        { className: 'company-switcher-time' },
-                        'Previously'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'company-switcher-name' },
-                        this.props.previousJob.company
+                        { className: 'company-switcher-previous', onClick: function onClick() {
+                                return _this3.updateCurrentJob(_this3.props.previousJob);
+                            } },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'company-switcher-time' },
+                            'Previously'
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'company-switcher-name' },
+                            this.props.previousJob.company
+                        )
                     )
                 ),
                 _react2.default.createElement(
@@ -19305,7 +19314,7 @@ var Job = function (_React$Component) {
                         { className: 'overflow-container' },
                         _react2.default.createElement(
                             _reactTransitionGroup.CSSTransition,
-                            { timeout: 1000, classNames: 'slideUp', 'in': true, exit: this.state.animate, mountOnEnter: true, unmountOnExit: false, appear: true, key: this.props.job.id },
+                            { timeout: 1000, classNames: 'slideUp', 'in': this.state.animate, exit: !this.state.animate, mountOnEnter: false, unmountOnExit: false, appear: true, key: this.props.job.id },
                             _react2.default.createElement(
                                 'div',
                                 { className: 'company-name' },
@@ -19318,7 +19327,7 @@ var Job = function (_React$Component) {
                         { className: 'overflow-container' },
                         _react2.default.createElement(
                             _reactTransitionGroup.CSSTransition,
-                            { timeout: 1000, classNames: 'slideDown', 'in': true, exit: this.state.animate, mountOnEnter: true, unmountOnExit: false, appear: true, key: this.props.job.id },
+                            { timeout: 1000, classNames: 'slideDown', 'in': this.state.animate, exit: !this.state.animate, mountOnEnter: false, unmountOnExit: false, appear: true, key: this.props.job.id },
                             _react2.default.createElement(
                                 'div',
                                 { className: 'company-duration' },
@@ -19333,7 +19342,7 @@ var Job = function (_React$Component) {
                     _react2.default.createElement('span', { className: 'company-pipe' }),
                     _react2.default.createElement(
                         _reactTransitionGroup.CSSTransition,
-                        { timeout: 1000, classNames: 'slideRight', 'in': true, exit: this.state.animate, mountOnEnter: true, unmountOnExit: false, appear: true, key: this.props.job.id },
+                        { timeout: 1000, classNames: 'fadeIn', 'in': this.state.animate, exit: !this.state.animate, mountOnEnter: false, unmountOnExit: false, appear: true, key: this.props.job.id },
                         _react2.default.createElement(
                             'p',
                             null,

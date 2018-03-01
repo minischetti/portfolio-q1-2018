@@ -49,13 +49,14 @@ export default class App extends React.Component {
             this.setState({nextJob: ""});
         }
     }
+
     render() {
         return (
             <div className="full">
                 <Social/>
                 <div className="full" style={{transform: `translateY(${this.state.isWorkVisible ? `-100%` : ""}`}}>
                     <Home showWork={this.showWork} isWorkVisible={this.state.isWorkVisible} transitionPages={this.transitionPages}/>
-                    {this.state.isWorkVisible && <Job job={this.state.job} previousJob={this.state.previousJob} nextJob={this.state.nextJob} updateCurrentJob={this.updateCurrentJob}/>}
+                    {this.state.isWorkVisible && <Job job={this.state.job} previousJob={this.state.previousJob} nextJob={this.state.nextJob} updateCurrentJob={this.updateCurrentJob} checkNextJob={this.checkNextJob} checkPreviousJob={this.checkPreviousJob}/>}
                 </div>
             </div>
         )

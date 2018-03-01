@@ -47,9 +47,7 @@
   font-size: 3.35vw;
   font-weight: 100;
   transition: .5s all;
-  color: #55EAFF;
-  transform: none;
-  opacity: 1; }
+  color: #55EAFF; }
 
 .company-duration {
   color: rgba(255, 255, 255, 0.35);
@@ -64,7 +62,8 @@
   line-height: 1.6;
   overflow: hidden; }
   .company-description p {
-    margin: 0; }
+    margin: 0;
+    transition: .5s all; }
 
 .company-pipe {
   width: 1px;
@@ -76,7 +75,24 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  text-align: center; }
+  text-align: center;
+  transition: .5s all; }
+
+.switcherSlideDown-exit, .switcherSlideDown-appear {
+  opacity: 0;
+  transform: translate(-50%, -100%); }
+
+.switcherSlideDown-appear-active {
+  opacity: 1;
+  transform: translate(-50%, 0); }
+
+.switcherSlideUp-exit, .switcherSlideUp-appear {
+  opacity: 0;
+  transform: translate(-50%, 100%); }
+
+.switcherSlideUp-appear-active {
+  opacity: 1;
+  transform: translate(-50%, 0); }
 
 .company-switcher-next {
   top: 2vw; }
@@ -110,7 +126,7 @@
 
 .slideUp-exit-active, .slideUp-leave-active {
   opacity: 0.01;
-  transform: translateY(-100%);
+  transform: translateY(100%);
   transition: 1s all;
   transition-delay: .2s; }
 
@@ -136,7 +152,7 @@
 
 .slideDown-exit-active, .slideDown-leave-active {
   opacity: 0.01;
-  transform: translateX(-100%);
+  transform: translateY(-100%);
   transition: 1s all;
   transition-delay: .2s; }
 
@@ -162,7 +178,7 @@
 
 .slideRight-exit-active, .slideRight-leave-active {
   opacity: 0.01;
-  transform: scale(0);
+  transform: translateX(-5%);
   transition: 1s all;
   transition-delay: .8s; }
 
@@ -191,6 +207,12 @@
   transform: scale(0);
   transition: 1s all;
   transition-delay: .4s; }
+
+.fadeIn-exit, .fadeIn-appear {
+  opacity: 0; }
+
+.fadeIn-appear-active {
+  opacity: 1; }
 
 .accent-color {
   color: #55EAFF; }
@@ -252,6 +274,10 @@ body {
 
 .overflow-container {
   overflow: hidden; }
+
+.hidden {
+  opacity: 0;
+  pointer-events: none; }
 
 .page-container {
   transition: 0.5s transform cubic-bezier(1, -0.2, 0.2, 1); }
