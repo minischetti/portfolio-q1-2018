@@ -9,7 +9,22 @@
 .social-icon
   cursor: pointer
   height: 1.5vw
+  animation: 1s appear
+  animation-fill-mode: both
+  animation-delay: 1s
+  &:nth-child(2)
+    animation-delay: 1.25s
+  &:nth-child(3)
+    animation-delay: 1.5s
   img
     height: 100%
   &:not(:last-child)
     margin-right: 1.5vw
+
+@keyframes appear
+  0%
+    opacity: 0
+    transform: translateY(-25%)
+  100%
+    opacity: 1
+    transform: translateY(0)
