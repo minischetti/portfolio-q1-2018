@@ -19100,33 +19100,30 @@ var Home = function (_React$Component) {
                 { className: 'home' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'hero' },
+                    { 'class': 'container' },
                     _react2.default.createElement(
-                        'h1',
-                        { className: 'header' },
-                        'I\'m ',
+                        'div',
+                        { 'class': 'shape' },
                         _react2.default.createElement(
-                            'span',
-                            { className: 'accent-color' },
-                            'Dom'
+                            'div',
+                            { 'class': 'side' },
+                            'Dominic Minischetti'
                         ),
-                        ', a ',
                         _react2.default.createElement(
-                            'span',
-                            { className: 'accent-color' },
+                            'div',
+                            { 'class': 'side' },
                             'Front-end Engineer'
                         ),
-                        ' in ',
                         _react2.default.createElement(
-                            'span',
-                            { className: 'accent-color' },
+                            'div',
+                            { 'class': 'side' },
+                            'Williams-Sonoma, Inc.'
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { 'class': 'side' },
                             'California'
                         )
-                    ),
-                    _react2.default.createElement(
-                        'p',
-                        { className: 'sub-header' },
-                        '\u2026and I love creating beautiful and functional interfaces, code to pixel.'
                     )
                 ),
                 _react2.default.createElement(_LearnMore2.default, { showWork: this.props.showWork })
