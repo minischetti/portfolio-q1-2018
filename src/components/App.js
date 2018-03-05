@@ -59,7 +59,6 @@ export default class App extends React.Component {
                     <Job job={this.state.job} previousJob={this.state.previousJob} nextJob={this.state.nextJob} updateCurrentJob={this.updateCurrentJob} checkNextJob={this.checkNextJob} checkPreviousJob={this.checkPreviousJob}/>
                     <img src="../dist/assets/arrow.svg" onClick={this.showWork} className={`page-switcher${this.state.isWorkVisible ? ` active` : ""}`}></img>
                 </div>
-                <span className="me">Dominic Minischetti</span>
                 <a href="/resume.pdf" className="resume">Resume</a>
             </div>
         )

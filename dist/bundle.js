@@ -19046,11 +19046,6 @@ var App = function (_React$Component) {
                     _react2.default.createElement('img', { src: '../dist/assets/arrow.svg', onClick: this.showWork, className: 'page-switcher' + (this.state.isWorkVisible ? ' active' : "") })
                 ),
                 _react2.default.createElement(
-                    'span',
-                    { className: 'me' },
-                    'Dominic Minischetti'
-                ),
-                _react2.default.createElement(
                     'a',
                     { href: '/resume.pdf', className: 'resume' },
                     'Resume'
