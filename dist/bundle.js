@@ -19070,9 +19070,9 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _LearnMore = __webpack_require__(34);
+var _circletype = __webpack_require__(49);
 
-var _LearnMore2 = _interopRequireDefault(_LearnMore);
+var _circletype2 = _interopRequireDefault(_circletype);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19092,6 +19092,17 @@ var Home = function (_React$Component) {
     }
 
     _createClass(Home, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var circle = new _circletype2.default(document.getElementById('cta'));
+            circle.forceWidth(true);
+            document.querySelector(".circle").querySelectorAll("span").forEach(function (character) {
+                if (character === "|") {
+                    console.log(character);
+                }
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var isWorkVisible = this.props.isWorkVisible;
@@ -19100,33 +19111,9 @@ var Home = function (_React$Component) {
                 { className: 'home' },
                 _react2.default.createElement(
                     'div',
-                    { 'class': 'container' },
-                    _react2.default.createElement(
-                        'div',
-                        { 'class': 'shape' },
-                        _react2.default.createElement(
-                            'div',
-                            { 'class': 'side' },
-                            'Dominic Minischetti'
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { 'class': 'side' },
-                            'Front-end Engineer'
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { 'class': 'side' },
-                            'Williams-Sonoma, Inc.'
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { 'class': 'side' },
-                            'California'
-                        )
-                    )
-                ),
-                _react2.default.createElement(_LearnMore2.default, { showWork: this.props.showWork })
+                    { id: 'cta', className: 'circle' },
+                    'DOMINIC MINISCHETTI\xA0\xA0\xA0\xA0FRONT-END ENGINEER\xA0\xA0\xA0\xA0WILLIAMS-SONOMA, INC.\xA0\xA0\xA0\xA0CALIFORNIA\xA0\xA0\xA0\xA0\u200C'
+                )
             );
         }
     }]);
@@ -19137,65 +19124,7 @@ var Home = function (_React$Component) {
 exports.default = Home;
 
 /***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var LearnMore = function (_React$Component) {
-    _inherits(LearnMore, _React$Component);
-
-    function LearnMore() {
-        _classCallCheck(this, LearnMore);
-
-        return _possibleConstructorReturn(this, (LearnMore.__proto__ || Object.getPrototypeOf(LearnMore)).apply(this, arguments));
-    }
-
-    _createClass(LearnMore, [{
-        key: "render",
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                "div",
-                { className: "learn-more-container", onClick: function onClick() {
-                        return _this2.props.showWork();
-                    } },
-                _react2.default.createElement("span", { className: "learn-more-button" }),
-                _react2.default.createElement(
-                    "span",
-                    { className: "learn-more-text" },
-                    "Learn More About my Work"
-                )
-            );
-        }
-    }]);
-
-    return LearnMore;
-}(_react2.default.Component);
-
-exports.default = LearnMore;
-
-/***/ }),
+/* 34 */,
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20834,6 +20763,20 @@ module.exports = {"social":[{"link":"domminischetti@gmail.com","alt":"Email","ic
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 48 */,
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * circletype 2.2.0
+ * A JavaScript library that lets you curve type on the web.
+ * Copyright © 2014-2017 Peter Hrynkow
+ * Licensed MIT
+ * https://github.com/peterhry/CircleType#readme
+ */
+!function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.CircleType=e():t.CircleType=e()}(this,function(){return function(t){function e(n){if(i[n])return i[n].exports;var r=i[n]={i:n,l:!1,exports:{}};return t[n].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var i={};return e.m=t,e.c=i,e.d=function(t,i,n){e.o(t,i)||Object.defineProperty(t,i,{configurable:!1,enumerable:!0,get:n})},e.n=function(t){var i=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(i,"a",i),i},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=1)}([function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=Math.PI/180;e.default=function(t){return t*n}},function(t,e,i){"use strict";var n=i(2),r=function(t){return t&&t.__esModule?t:{default:t}}(n);t.exports=r.default},function(t,e,i){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var o=function(){function t(t,e){for(var i=0;i<e.length;i++){var n=e[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,i,n){return i&&t(e.prototype,i),n&&t(e,n),e}}(),u=i(3),a=n(u),s=i(4),f=n(s),l=i(5),c=n(l),d=i(6),h=n(d),_=i(7),v=n(_),p=Math.PI,m=Math.max,y=Math.min,g=function(){function t(e){r(this,t),this.element=e,this.originalHTML=this.element.innerHTML;var i=document.createElement("div");i.setAttribute("aria-label",e.innerText),i.style.position="relative",this.container=i,this._letters=(0,f.default)(e),this._letters.forEach(function(t){return i.appendChild(t)}),this.element.innerHTML="",this.element.appendChild(i);var n=window.getComputedStyle(this.element),o=n.fontSize,u=n.lineHeight;this._fontSize=parseFloat(o),this._lineHeight=parseFloat(u)||this._fontSize,this._metrics=this._letters.map(a.default);var s=this._metrics.reduce(function(t,e){return t+e.width},0);this._minRadius=s/p/2+this._lineHeight,this._dir=1,this._forceWidth=!1,this._forceHeight=!0,this._radius=this._minRadius,this._invalidate()}return o(t,[{key:"radius",value:function(t){return void 0!==t?(this._radius=m(this._minRadius,t),this._invalidate(),this):this._radius}},{key:"dir",value:function(t){return void 0!==t?(this._dir=t,this._invalidate(),this):this._dir}},{key:"forceWidth",value:function(t){return void 0!==t?(this._forceWidth=t,this._invalidate(),this):this._forceWidth}},{key:"forceHeight",value:function(t){return void 0!==t?(this._forceHeight=t,this._invalidate(),this):this._forceHeight}},{key:"refresh",value:function(){return this._invalidate()}},{key:"destroy",value:function(){return this.element.innerHTML=this.originalHTML,this}},{key:"_invalidate",value:function(){var t=this;return cancelAnimationFrame(this._raf),this._raf=requestAnimationFrame(function(){t._layout()}),this}},{key:"_layout",value:function(){var t=this,e=this._radius,i=this._dir,n=-1===i?-e+this._lineHeight:e,r="center "+n/this._fontSize+"em",o=e-this._lineHeight,u=(0,v.default)(this._metrics,o),a=u.rotations,s=u.θ;if(this._letters.forEach(function(e,n){var o=e.style,u=(-.5*s+a[n])*i,f=-.5*t._metrics[n].width/t._fontSize,l="translateX("+f+"em) rotate("+u+"deg)";o.position="absolute",o.bottom=-1===i?0:"auto",o.left="50%",o.transform=l,o.transformOrigin=r,o.webkitTransform=l,o.webkitTransformOrigin=r}),this._forceHeight){var f=s>180?(0,c.default)(e,s):(0,c.default)(o,s)+this._lineHeight;this.container.style.height=f/this._fontSize+"em"}if(this._forceWidth){var l=(0,h.default)(e,y(180,s));this.container.style.width=l/this._fontSize+"em"}return this}}]),t}();e.default=g},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(t){var e=t.getBoundingClientRect();return{height:e.height,left:e.left+window.pageXOffset,top:e.top+window.pageYOffset,width:e.width}}},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"span",i=document.createElement(e);return t.innerText.trim().split("").map(function(t){var e=i.cloneNode();return e.insertAdjacentHTML("afterbegin"," "===t?"&nbsp;":t),e})}},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=i(0),r=function(t){return t&&t.__esModule?t:{default:t}}(n);e.default=function(t,e){return t*(1-Math.cos((0,r.default)(e/2)))}},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=i(0),r=function(t){return t&&t.__esModule?t:{default:t}}(n);e.default=function(t,e){return 2*t*Math.sin((0,r.default)(e/2))}},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=i(8),r=function(t){return t&&t.__esModule?t:{default:t}}(n);e.default=function(t,e){return t.reduce(function(t,i){var n=i.width,o=(0,r.default)(n/e);return{"θ":t.θ+o,rotations:t.rotations.concat([t.θ+o/2])}},{"θ":0,rotations:[]})}},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=180/Math.PI;e.default=function(t){return t*n}}])});
 
 /***/ })
 /******/ ]);

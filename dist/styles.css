@@ -6,65 +6,47 @@
   align-items: center;
   transition: .25s opacity; }
 
-.accent-color {
+.circle {
+  position: relative;
+  animation: 16s rotate linear infinite;
+  border-radius: 50%;
+  padding: 10px;
+  font-weight: bold;
   color: #55EAFF; }
-
-.container {
-  position: relative;
-  perspective: 800px;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
-  animation-fill-mode: both;
-  pointer-events: none; }
-
-@keyframes popOut {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 60px rgba(0, 0, 0, 0.5); } }
-
-.shape {
-  position: relative;
-  margin: auto;
-  width: 300px;
-  height: 80px;
-  transition: 1s all ease-in-out;
-  animation: flipRectangle 4s infinite;
-  transform-style: preserve-3d; }
-  .shape .side {
+  .circle:after {
+    content: "";
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    color: #55EAFF;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: bold;
-    line-height: 80px;
-    backface-visibility: hidden;
-    background-image: linear-gradient(#242424, #1E1E1E); }
-    .shape .side:nth-of-type(1) {
-      transform: rotateX(0) translateZ(40px); }
-    .shape .side:nth-of-type(2) {
-      background-color: #1E1E1E;
-      transform: rotateX(-90deg) translateZ(40px); }
-    .shape .side:nth-of-type(3) {
-      background-color: #1E1E1E;
-      transform: rotateX(180deg) translateZ(40px); }
-    .shape .side:nth-of-type(4) {
-      background-color: #1E1E1E;
-      transform: rotateX(90deg) translateZ(40px); }
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    transform: scale(1.1);
+    z-index: -1; }
+  .circle:before {
+    border: 2px dotted rgba(255, 255, 255, 0.1);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: scale(1);
+    animation: 32s rotate linear infinite reverse; }
 
-@keyframes flipRectangle {
+@keyframes rotate {
   0% {
-    transform: none; }
-  25% {
-    transform: rotateX(90deg); }
-  50% {
-    transform: rotateX(180deg); }
-  75% {
-    transform: rotateX(270deg); }
+    transform: rotate(0deg); }
   100% {
-    transform: rotateX(360deg); } }
+    transform: rotate(360deg); } }
+
+@keyframes popIn {
+  0% {
+    transform: scale(0); }
+  100% {
+    transform: scale(1); } }
 
 .job {
   position: relative;
