@@ -14,17 +14,9 @@
   perspective: 800px;
   animation: 2s popOut cubic-bezier(0.25, -0.25, 0.225, 1.25);
   animation-fill-mode: both;
-  pointer-events: none; }
-
-@keyframes popOut {
-  0% {
-    opacity: 0;
-    transform: scaleX(0.75);
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0.5); }
-  100% {
-    transform: scaleX(1);
-    opacity: 1;
-    box-shadow: 0 0 60px rgba(0, 0, 0, 0.5); } }
+  pointer-events: none;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px; }
 
 .shape {
   position: relative;
@@ -35,28 +27,31 @@
   animation-delay: 1.25s;
   animation-fill-type: both;
   transform-style: preserve-3d; }
-  .shape .side {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: bold;
-    line-height: 80px;
-    backface-visibility: hidden;
-    background-image: linear-gradient(#242424, #1E1E1E); }
-    .shape .side:nth-of-type(1) {
-      background-color: #1E1E1E;
-      transform: rotateX(0) translateZ(40px); }
-    .shape .side:nth-of-type(2) {
-      background-color: #1E1E1E;
-      transform: rotateX(-90deg) translateZ(40px); }
-    .shape .side:nth-of-type(3) {
-      background-color: #1E1E1E;
-      transform: rotateX(180deg) translateZ(40px); }
-    .shape .side:nth-of-type(4) {
-      background-color: #1E1E1E;
-      transform: rotateX(90deg) translateZ(40px); }
+
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 80px;
+  backface-visibility: hidden;
+  color: #FFC300;
+  background-image: linear-gradient(#242424, #1E1E1E); }
+  .side:nth-of-type(1) {
+    background-color: #1E1E1E;
+    transform: rotateX(0) translateZ(40px); }
+  .side:nth-of-type(2) {
+    background-color: #1E1E1E;
+    transform: rotateX(-90deg) translateZ(40px); }
+  .side:nth-of-type(3) {
+    background-color: #1E1E1E;
+    transform: rotateX(180deg) translateZ(40px); }
+  .side:nth-of-type(4) {
+    background-color: #1E1E1E;
+    transform: rotateX(90deg) translateZ(40px); }
 
 @keyframes flipRectangle {
   0% {
@@ -90,19 +85,17 @@
   text-align: uppercase; }
 
 .company-name {
-  /* color: #55EAFF; */
-  /* font-size: 48px; */
   font-size: 3.35vw;
-  font-weight: 100;
-  transition: .5s all;
-  color: #55EAFF; }
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: .5s all; }
 
 .company-duration {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(0, 0, 0, 0.75);
   /* font-size: 24px; */
   font-size: 1.65vw;
-  font-weight: 300;
-  transition: .5s all; }
+  transition: .5s all;
+  text-transform: uppercase; }
 
 .company-description {
   display: flex;
@@ -117,7 +110,7 @@
   width: 1px;
   flex-shrink: 0;
   margin-right: 10px;
-  background-color: #55EAFF; }
+  background-color: black; }
 
 .company-switcher-next, .company-switcher-previous {
   position: absolute;
@@ -126,7 +119,8 @@
   text-align: center;
   transition: .5s all;
   cursor: pointer;
-  user-select: none; }
+  user-select: none;
+  text-transform: uppercase; }
 
 .switcherSlideDown-exit, .switcherSlideDown-appear {
   opacity: 0;
@@ -151,10 +145,12 @@
   bottom: 2vw; }
 
 .company-switcher-time {
-  font-size: 1vw; }
+  font-size: 1vw;
+  opacity: .5; }
 
 .company-switcher-name {
-  font-size: 1.25vw; }
+  font-size: 1.25vw;
+  font-weight: bold; }
 
 .slideUp-appear, .slideUp-enter {
   opacity: 0;
@@ -264,9 +260,6 @@
 .fadeIn-appear-active {
   opacity: 1; }
 
-.accent-color {
-  color: #55EAFF; }
-
 .learn-more-container {
   display: flex;
   justify-content: center;
@@ -277,7 +270,7 @@
   cursor: pointer; }
 
 .learn-more-button {
-  background-color: #55EAFF;
+  background-color: black;
   width: 2vw;
   height: 2vw;
   border-radius: 50%;
@@ -324,14 +317,22 @@ html, body {
   width: 100%;
   height: 100%; }
 
+* {
+  box-sizing: border-box; }
+
+html {
+  background-color: black;
+  padding: 10px; }
+
 body {
   font-family: "Roboto";
   /* font-size: 18px; */
   font-size: 1.25vw;
   -webkit-font-smoothing: antialiased;
-  color: white;
-  background-color: #1E1E1E;
-  overflow: hidden; }
+  color: black;
+  background-image: linear-gradient(#FFC300, #FFB300);
+  overflow: hidden;
+  border-radius: 3px; }
 
 .full {
   width: 100%;
