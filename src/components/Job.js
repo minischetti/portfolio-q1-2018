@@ -19,7 +19,7 @@ export default class Job extends React.Component {
     render() {
         const isWorkVisible = this.props.isWorkVisible;
         return (
-            <div className="job">
+            <div className="job page">
                 {this.props.nextJob &&
                     <CSSTransition timeout={1000} classNames="switcherSlideDown" in={this.state.animate} exit={!this.state.animate} mountOnEnter={true} unmountOnExit={true} appear={true} key={this.props.job.id}>
                         {/* <p>{this.props.job.description}</p> */}

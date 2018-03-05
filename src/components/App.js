@@ -27,7 +27,7 @@ export default class App extends React.Component {
     }
 
     showWork() {
-        this.setState({isWorkVisible: true});
+        this.setState({isWorkVisible: !this.state.isWorkVisible});
     }
 
     checkPreviousJob() {
@@ -52,12 +52,15 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div className="full">
+            <div className="wrap">
                 <Social/>
-                <div className="full" style={{transform: `translateY(${this.state.isWorkVisible ? `-100%` : ""}`}}>
+                <div className="page-container" style={{transform: `translateX(${this.state.isWorkVisible ? `-100%` : "0"}`}}>
                     <Home showWork={this.showWork} isWorkVisible={this.state.isWorkVisible} transitionPages={this.transitionPages}/>
-                    {this.state.isWorkVisible && <Job job={this.state.job} previousJob={this.state.previousJob} nextJob={this.state.nextJob} updateCurrentJob={this.updateCurrentJob} checkNextJob={this.checkNextJob} checkPreviousJob={this.checkPreviousJob}/>}
+                    <Job job={this.state.job} previousJob={this.state.previousJob} nextJob={this.state.nextJob} updateCurrentJob={this.updateCurrentJob} checkNextJob={this.checkNextJob} checkPreviousJob={this.checkPreviousJob}/>
+                    <img src="../dist/assets/arrow.svg" onClick={this.showWork} className={`page-switcher${this.state.isWorkVisible ? ` active` : ""}`}></img>
                 </div>
+                <span className="me">Dominic Minischetti</span>
+                <a href="/resume.pdf" className="resume">Resume</a>
             </div>
         )
     }

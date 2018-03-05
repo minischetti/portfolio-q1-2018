@@ -19007,7 +19007,7 @@ var App = function (_React$Component) {
     }, {
         key: 'showWork',
         value: function showWork() {
-            this.setState({ isWorkVisible: true });
+            this.setState({ isWorkVisible: !this.state.isWorkVisible });
         }
     }, {
         key: 'checkPreviousJob',
@@ -19036,13 +19036,24 @@ var App = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'full' },
+                { className: 'wrap' },
                 _react2.default.createElement(_Social2.default, null),
                 _react2.default.createElement(
                     'div',
-                    { className: 'full', style: { transform: 'translateY(' + (this.state.isWorkVisible ? '-100%' : "") } },
+                    { className: 'page-container', style: { transform: 'translateX(' + (this.state.isWorkVisible ? '-100%' : "0") } },
                     _react2.default.createElement(_Home2.default, { showWork: this.showWork, isWorkVisible: this.state.isWorkVisible, transitionPages: this.transitionPages }),
-                    this.state.isWorkVisible && _react2.default.createElement(_Job2.default, { job: this.state.job, previousJob: this.state.previousJob, nextJob: this.state.nextJob, updateCurrentJob: this.updateCurrentJob, checkNextJob: this.checkNextJob, checkPreviousJob: this.checkPreviousJob })
+                    _react2.default.createElement(_Job2.default, { job: this.state.job, previousJob: this.state.previousJob, nextJob: this.state.nextJob, updateCurrentJob: this.updateCurrentJob, checkNextJob: this.checkNextJob, checkPreviousJob: this.checkPreviousJob }),
+                    _react2.default.createElement('img', { src: '../dist/assets/arrow.svg', onClick: this.showWork, className: 'page-switcher' + (this.state.isWorkVisible ? ' active' : "") })
+                ),
+                _react2.default.createElement(
+                    'span',
+                    { className: 'me' },
+                    'Dominic Minischetti'
+                ),
+                _react2.default.createElement(
+                    'a',
+                    { href: '/resume.pdf', className: 'resume' },
+                    'Resume'
                 )
             );
         }
@@ -19097,36 +19108,35 @@ var Home = function (_React$Component) {
             var isWorkVisible = this.props.isWorkVisible;
             return _react2.default.createElement(
                 'div',
-                { className: 'home' },
+                { className: 'home page' },
                 _react2.default.createElement(
                     'div',
-                    { 'class': 'container' },
+                    { className: 'container' },
                     _react2.default.createElement(
                         'div',
-                        { 'class': 'shape' },
+                        { className: 'shape' },
                         _react2.default.createElement(
                             'div',
-                            { 'class': 'side' },
+                            { className: 'side' },
                             'Dominic Minischetti'
                         ),
                         _react2.default.createElement(
                             'div',
-                            { 'class': 'side' },
+                            { className: 'side' },
                             'Front-end Engineer'
                         ),
                         _react2.default.createElement(
                             'div',
-                            { 'class': 'side' },
+                            { className: 'side' },
                             'Williams-Sonoma, Inc.'
                         ),
                         _react2.default.createElement(
                             'div',
-                            { 'class': 'side' },
+                            { className: 'side' },
                             'California'
                         )
                     )
-                ),
-                _react2.default.createElement(_LearnMore2.default, { showWork: this.props.showWork })
+                )
             );
         }
     }]);
@@ -19257,7 +19267,7 @@ var Job = function (_React$Component) {
             var isWorkVisible = this.props.isWorkVisible;
             return _react2.default.createElement(
                 'div',
-                { className: 'job' },
+                { className: 'job page' },
                 this.props.nextJob && _react2.default.createElement(
                     _reactTransitionGroup.CSSTransition,
                     { timeout: 1000, classNames: 'switcherSlideDown', 'in': this.state.animate, exit: !this.state.animate, mountOnEnter: true, unmountOnExit: true, appear: true, key: this.props.job.id },

@@ -2,21 +2,17 @@ $accent: #55EAFF
 $transition-timing: cubic-bezier(0.25, -0.25, 0.225, 1.25)
 
 .home
-  display: flex
-  width: 100%
-  height: 100%
-  justify-content: center
-  align-items: center
-  transition: .25s opacity
-
-.accent-color
-    color: $accent
+    display: flex
+    width: 100%
+    height: 100%
+    justify-content: center
+    align-items: center
+    transition: .25s opacity
+    background-image: linear-gradient(#FFC300, #FFB300)
 
 .container
     position: relative
     perspective: 800px
-    animation: 2s popOut $transition-timing
-    animation-fill-mode: both
     pointer-events: none
     box-shadow: 0 0 60px rgba(0,0,0,.5)
     letter-spacing: 2px
@@ -28,7 +24,7 @@ $transition-timing: cubic-bezier(0.25, -0.25, 0.225, 1.25)
     height: 80px
     animation: flipRectangle 4s infinite
     // backface-visibility: hidden
-    animation-delay: 1.25s
+    animation-delay: 1s
     animation-fill-type: both
     transform-style: preserve-3d
 .side
