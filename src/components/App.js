@@ -7,7 +7,7 @@ import jobs from '../data/jobs.json';
 export default class App extends React.Component {
     constructor() {
         super();
-        this.state = { isWorkVisible: false, job: jobs.jobs[0], previousJob: "", nextJob: "" }
+        this.state = { showWork: false, job: jobs.jobs[0], previousJob: "", nextJob: "" }
         this.showWork = this.showWork.bind(this);
         this.updateCurrentJob = this.updateCurrentJob.bind(this);
         this.checkPreviousJob = this.checkPreviousJob.bind(this);
@@ -27,7 +27,7 @@ export default class App extends React.Component {
     }
 
     showWork() {
-        this.setState({isWorkVisible: !this.state.isWorkVisible});
+        this.setState({showWork: !this.state.showWork});
     }
 
     checkPreviousJob() {
@@ -54,10 +54,10 @@ export default class App extends React.Component {
         return (
             <div className="wrap">
                 <Social/>
-                <div className="page-container" style={{transform: `translateX(${this.state.isWorkVisible ? `-100%` : "0"}`}}>
-                    <Home showWork={this.showWork} isWorkVisible={this.state.isWorkVisible} transitionPages={this.transitionPages}/>
+                <div className="page-container" style={{transform: `translateX(${this.state.showWork ? `-100%` : "0"}`}}>
+                    <Home transitionPages={this.transitionPages}/>
                     <Job job={this.state.job} previousJob={this.state.previousJob} nextJob={this.state.nextJob} updateCurrentJob={this.updateCurrentJob} checkNextJob={this.checkNextJob} checkPreviousJob={this.checkPreviousJob}/>
-                    <img src="../dist/assets/arrow.svg" onClick={this.showWork} className={`page-switcher${this.state.isWorkVisible ? ` active` : ""}`}></img>
+                    <img src="../dist/assets/arrow.svg" onClick={this.showWork} className={`page-switcher${this.state.showWork ? ` active` : ""}`}></img>
                 </div>
                 <a href="/resume.pdf" className="resume">Resume</a>
             </div>

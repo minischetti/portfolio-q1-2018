@@ -18980,7 +18980,7 @@ var App = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-        _this.state = { isWorkVisible: false, job: _jobs2.default.jobs[0], previousJob: "", nextJob: "" };
+        _this.state = { showWork: false, job: _jobs2.default.jobs[0], previousJob: "", nextJob: "" };
         _this.showWork = _this.showWork.bind(_this);
         _this.updateCurrentJob = _this.updateCurrentJob.bind(_this);
         _this.checkPreviousJob = _this.checkPreviousJob.bind(_this);
@@ -19007,7 +19007,7 @@ var App = function (_React$Component) {
     }, {
         key: 'showWork',
         value: function showWork() {
-            this.setState({ isWorkVisible: !this.state.isWorkVisible });
+            this.setState({ showWork: !this.state.showWork });
         }
     }, {
         key: 'checkPreviousJob',
@@ -19040,10 +19040,10 @@ var App = function (_React$Component) {
                 _react2.default.createElement(_Social2.default, null),
                 _react2.default.createElement(
                     'div',
-                    { className: 'page-container', style: { transform: 'translateX(' + (this.state.isWorkVisible ? '-100%' : "0") } },
-                    _react2.default.createElement(_Home2.default, { showWork: this.showWork, isWorkVisible: this.state.isWorkVisible, transitionPages: this.transitionPages }),
+                    { className: 'page-container', style: { transform: 'translateX(' + (this.state.showWork ? '-100%' : "0") } },
+                    _react2.default.createElement(_Home2.default, { transitionPages: this.transitionPages }),
                     _react2.default.createElement(_Job2.default, { job: this.state.job, previousJob: this.state.previousJob, nextJob: this.state.nextJob, updateCurrentJob: this.updateCurrentJob, checkNextJob: this.checkNextJob, checkPreviousJob: this.checkPreviousJob }),
-                    _react2.default.createElement('img', { src: '../dist/assets/arrow.svg', onClick: this.showWork, className: 'page-switcher' + (this.state.isWorkVisible ? ' active' : "") })
+                    _react2.default.createElement('img', { src: '../dist/assets/arrow.svg', onClick: this.showWork, className: 'page-switcher' + (this.state.showWork ? ' active' : "") })
                 ),
                 _react2.default.createElement(
                     'a',
@@ -19076,10 +19076,6 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _LearnMore = __webpack_require__(34);
-
-var _LearnMore2 = _interopRequireDefault(_LearnMore);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19098,37 +19094,36 @@ var Home = function (_React$Component) {
     }
 
     _createClass(Home, [{
-        key: 'render',
+        key: "render",
         value: function render() {
-            var isWorkVisible = this.props.isWorkVisible;
             return _react2.default.createElement(
-                'div',
-                { className: 'home page' },
+                "div",
+                { className: "home page" },
                 _react2.default.createElement(
-                    'div',
-                    { className: 'container' },
+                    "div",
+                    { className: "container" },
                     _react2.default.createElement(
-                        'div',
-                        { className: 'shape' },
+                        "div",
+                        { className: "shape" },
                         _react2.default.createElement(
-                            'div',
-                            { className: 'side' },
-                            'Dominic Minischetti'
+                            "div",
+                            { className: "side" },
+                            "Dominic Minischetti"
                         ),
                         _react2.default.createElement(
-                            'div',
-                            { className: 'side' },
-                            'Front-end Engineer'
+                            "div",
+                            { className: "side" },
+                            "Front-end Engineer"
                         ),
                         _react2.default.createElement(
-                            'div',
-                            { className: 'side' },
-                            'Williams-Sonoma, Inc.'
+                            "div",
+                            { className: "side" },
+                            "Williams-Sonoma, Inc."
                         ),
                         _react2.default.createElement(
-                            'div',
-                            { className: 'side' },
-                            'California'
+                            "div",
+                            { className: "side" },
+                            "California"
                         )
                     )
                 )
@@ -19142,65 +19137,7 @@ var Home = function (_React$Component) {
 exports.default = Home;
 
 /***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var LearnMore = function (_React$Component) {
-    _inherits(LearnMore, _React$Component);
-
-    function LearnMore() {
-        _classCallCheck(this, LearnMore);
-
-        return _possibleConstructorReturn(this, (LearnMore.__proto__ || Object.getPrototypeOf(LearnMore)).apply(this, arguments));
-    }
-
-    _createClass(LearnMore, [{
-        key: "render",
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                "div",
-                { className: "learn-more-container", onClick: function onClick() {
-                        return _this2.props.showWork();
-                    } },
-                _react2.default.createElement("span", { className: "learn-more-button" }),
-                _react2.default.createElement(
-                    "span",
-                    { className: "learn-more-text" },
-                    "Learn More About my Work"
-                )
-            );
-        }
-    }]);
-
-    return LearnMore;
-}(_react2.default.Component);
-
-exports.default = LearnMore;
-
-/***/ }),
+/* 34 */,
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19259,7 +19196,6 @@ var Job = function (_React$Component) {
         value: function render() {
             var _this3 = this;
 
-            var isWorkVisible = this.props.isWorkVisible;
             return _react2.default.createElement(
                 'div',
                 { className: 'job page' },

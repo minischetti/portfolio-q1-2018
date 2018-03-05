@@ -17,7 +17,6 @@ export default class Job extends React.Component {
     }
 
     render() {
-        const isWorkVisible = this.props.isWorkVisible;
         return (
             <div className="job page">
                 {this.props.nextJob &&
