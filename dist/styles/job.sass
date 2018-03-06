@@ -1,14 +1,25 @@
 .job
-  position: relative
-  top: -100%
-  left: 100%
-  width: 100%
-  height: 100%
-  display: flex
-  justify-content: center
-  align-items: center
-  transition: .25s opacity
-  background-image: linear-gradient(#FFC300, #FFB300)
+    position: relative
+    top: -100%
+    left: 100%
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    transition: .25s opacity
+    background-image: linear-gradient($accent, #FFB300)
+    &.animate
+        .company-name
+            transform: translateY(100%)
+        .company-duration
+            transform: translateY(-100%)
+        .company-switcher-next
+            transform: translate(-50%, -100%)
+            opacity: 0
+        .company-switcher-previous
+            transform: translate(-50%, 100%)
+            opacity: 0
 
 .company-information
   position: absolute
@@ -18,19 +29,16 @@
   flex-direction: column
   text-align: uppercase
 
-
 .company-name
   font-size: 3.35vw
   font-weight: bold
   text-transform: uppercase
-  transition: .5s all
-  // color: white
+  transition: 1s all
 
 .company-duration
   color: rgba(0,0,0, .75)
-  /* font-size: 24px; */
   font-size: 1.65vw
-  transition: .5s all
+  transition: 1s all
   text-transform: uppercase
 
 .company-description
@@ -38,7 +46,12 @@
   width: 50%
   line-height: 1.6
   overflow: hidden
+  padding: 2vw
+  background-image: linear-gradient(lighten(#000,10%),#000)
+  box-shadow: 0 0 60px rgba(0,0,0,.25)
   p
+    color: $accent
+    font-size: 1.1vw
     margin: 0
     transition: .5s all
 
@@ -46,23 +59,41 @@
   width: 1px
   flex-shrink: 0
   margin-right: 10px
-  background-color: black
+  background-color: $accent
 
 .company-switcher-next, .company-switcher-previous
   position: absolute
   left: 50%
   transform: translateX(-50%)
   text-align: center
-  transition: .5s all
+  transition: 1s all
   cursor: pointer
   user-select: none
   text-transform: uppercase
 
+@keyframes slideUp
+    0%
+        opacity: 0
+        transform: translate(-50%, 100%)
+    100%
+        opacity: 1
+        transform: translate(-50%, 0)
+
+@keyframes slideDown
+    0%
+        opacity: 0
+        transform: translate(-50%, -100%)
+    100%
+        opacity: 1
+        transform: translate(-50%, 0)
+
 .company-switcher-next
   top: 2vw
+  animation: 1s slideDown
 
 .company-switcher-previous
   bottom: 2vw
+  animation: 1s slideUp
 
 .company-switcher-time
   font-size: 1vw

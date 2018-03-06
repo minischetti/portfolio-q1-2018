@@ -586,11 +586,11 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(38)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(37)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(39)();
+  module.exports = __webpack_require__(38)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -1662,7 +1662,7 @@ var classNamesShape = exports.classNamesShape = _propTypes2.default.oneOfType([_
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(21);
-module.exports = __webpack_require__(47);
+module.exports = __webpack_require__(46);
 
 
 /***/ }),
@@ -18952,11 +18952,11 @@ var _Home = __webpack_require__(33);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Job = __webpack_require__(35);
+var _Job = __webpack_require__(34);
 
 var _Job2 = _interopRequireDefault(_Job);
 
-var _Social = __webpack_require__(45);
+var _Social = __webpack_require__(44);
 
 var _Social2 = _interopRequireDefault(_Social);
 
@@ -19137,8 +19137,7 @@ var Home = function (_React$Component) {
 exports.default = Home;
 
 /***/ }),
-/* 34 */,
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19158,7 +19157,7 @@ var _jobs = __webpack_require__(17);
 
 var _jobs2 = _interopRequireDefault(_jobs);
 
-var _reactTransitionGroup = __webpack_require__(36);
+var _reactTransitionGroup = __webpack_require__(35);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19176,7 +19175,7 @@ var Job = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Job.__proto__ || Object.getPrototypeOf(Job)).call(this));
 
-        _this.state = { animate: true };
+        _this.state = { animate: false };
         return _this;
     }
 
@@ -19185,9 +19184,9 @@ var Job = function (_React$Component) {
         value: function updateCurrentJob(job) {
             var _this2 = this;
 
-            this.setState({ animate: false });
+            this.setState({ animate: true });
             setTimeout(function () {
-                _this2.setState({ animate: true });
+                _this2.setState({ animate: false });
                 _this2.props.updateCurrentJob(job);
             }, 1000);
         }
@@ -19198,45 +19197,37 @@ var Job = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'job page' },
+                { className: 'job page' + (this.state.animate ? " animate" : "") },
                 this.props.nextJob && _react2.default.createElement(
-                    _reactTransitionGroup.CSSTransition,
-                    { timeout: 1000, classNames: 'switcherSlideDown', 'in': this.state.animate, exit: !this.state.animate, mountOnEnter: true, unmountOnExit: true, appear: true, key: this.props.job.id },
+                    'div',
+                    { className: 'company-switcher-next', onClick: function onClick() {
+                            return _this3.updateCurrentJob(_this3.props.nextJob);
+                        } },
                     _react2.default.createElement(
                         'div',
-                        { className: 'company-switcher-next', onClick: function onClick() {
-                                return _this3.updateCurrentJob(_this3.props.nextJob);
-                            } },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'company-switcher-time' },
-                            'Currently'
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'company-switcher-name' },
-                            this.props.nextJob.company
-                        )
+                        { className: 'company-switcher-time' },
+                        'Currently'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'company-switcher-name' },
+                        this.props.nextJob.company
                     )
                 ),
                 this.props.previousJob && _react2.default.createElement(
-                    _reactTransitionGroup.CSSTransition,
-                    { timeout: 1000, classNames: 'switcherSlideUp', 'in': this.state.animate, exit: !this.state.animate, mountOnEnter: false, unmountOnExit: false, appear: true, key: this.props.job.id },
+                    'div',
+                    { className: 'company-switcher-previous', onClick: function onClick() {
+                            return _this3.updateCurrentJob(_this3.props.previousJob);
+                        } },
                     _react2.default.createElement(
                         'div',
-                        { className: 'company-switcher-previous', onClick: function onClick() {
-                                return _this3.updateCurrentJob(_this3.props.previousJob);
-                            } },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'company-switcher-time' },
-                            'Previously'
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'company-switcher-name' },
-                            this.props.previousJob.company
-                        )
+                        { className: 'company-switcher-time' },
+                        'Previously'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'company-switcher-name' },
+                        this.props.previousJob.company
                     )
                 ),
                 _react2.default.createElement(
@@ -19251,41 +19242,28 @@ var Job = function (_React$Component) {
                         'div',
                         { className: 'overflow-container' },
                         _react2.default.createElement(
-                            _reactTransitionGroup.CSSTransition,
-                            { timeout: 1000, classNames: 'slideUp', 'in': this.state.animate, exit: !this.state.animate, mountOnEnter: false, unmountOnExit: false, appear: true, key: this.props.job.id },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'company-name' },
-                                this.props.job.company
-                            )
+                            'div',
+                            { className: 'company-name' },
+                            this.props.job.company
                         )
                     ),
                     _react2.default.createElement(
                         'div',
                         { className: 'overflow-container' },
                         _react2.default.createElement(
-                            _reactTransitionGroup.CSSTransition,
-                            { timeout: 1000, classNames: 'slideDown', 'in': this.state.animate, exit: !this.state.animate, mountOnEnter: false, unmountOnExit: false, appear: true, key: this.props.job.id },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'company-duration' },
-                                this.props.job.duration
-                            )
+                            'div',
+                            { className: 'company-duration' },
+                            this.props.job.duration
                         )
                     )
                 ),
                 _react2.default.createElement(
                     'div',
                     { className: 'company-description' },
-                    _react2.default.createElement('span', { className: 'company-pipe' }),
                     _react2.default.createElement(
-                        _reactTransitionGroup.CSSTransition,
-                        { timeout: 1000, classNames: 'fadeIn', 'in': this.state.animate, exit: !this.state.animate, mountOnEnter: false, unmountOnExit: false, appear: true, key: this.props.job.id },
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            this.props.job.description
-                        )
+                        'p',
+                        null,
+                        this.props.job.description
                     )
                 )
             );
@@ -19298,17 +19276,17 @@ var Job = function (_React$Component) {
 exports.default = Job;
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _CSSTransition = __webpack_require__(37);
+var _CSSTransition = __webpack_require__(36);
 
 var _CSSTransition2 = _interopRequireDefault(_CSSTransition);
 
-var _TransitionGroup = __webpack_require__(43);
+var _TransitionGroup = __webpack_require__(42);
 
 var _TransitionGroup2 = _interopRequireDefault(_TransitionGroup);
 
@@ -19325,7 +19303,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19339,11 +19317,11 @@ var _propTypes = __webpack_require__(7);
 
 var PropTypes = _interopRequireWildcard(_propTypes);
 
-var _addClass = __webpack_require__(40);
+var _addClass = __webpack_require__(39);
 
 var _addClass2 = _interopRequireDefault(_addClass);
 
-var _removeClass = __webpack_require__(42);
+var _removeClass = __webpack_require__(41);
 
 var _removeClass2 = _interopRequireDefault(_removeClass);
 
@@ -19643,7 +19621,7 @@ module.exports = exports['default'];
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20193,7 +20171,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20258,7 +20236,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20269,7 +20247,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = addClass;
 
-var _hasClass = __webpack_require__(41);
+var _hasClass = __webpack_require__(40);
 
 var _hasClass2 = _interopRequireDefault(_hasClass);
 
@@ -20281,7 +20259,7 @@ function addClass(element, className) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20297,7 +20275,7 @@ function hasClass(element, className) {
 module.exports = exports["default"];
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20312,7 +20290,7 @@ module.exports = function removeClass(element, className) {
 };
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20330,7 +20308,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ChildMapping = __webpack_require__(44);
+var _ChildMapping = __webpack_require__(43);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20609,7 +20587,7 @@ module.exports = exports['default'];
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20704,7 +20682,7 @@ function mergeChildMappings(prev, next) {
 }
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20720,7 +20698,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _social = __webpack_require__(46);
+var _social = __webpack_require__(45);
 
 var _social2 = _interopRequireDefault(_social);
 
@@ -20765,13 +20743,13 @@ var Social = function (_React$Component) {
 exports.default = Social;
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = {"social":[{"link":"domminischetti@gmail.com","alt":"Email","icon":"./assets/email.svg","id":"0"},{"link":"https://www.linkedin.com/in/domminischetti/","alt":"LinkedIn","icon":"./assets/linkedin.svg","id":"1"},{"link":"https://github.com/minischetti","alt":"GitHub","icon":"./assets/github.svg","id":"2"}]}
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
